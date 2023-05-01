@@ -12,6 +12,8 @@ module.exports = {
         en: ["Roboto"],
       },
       colors: {
+        "primary-light": "#fff",
+        "primary-dark": "#fff",
         "gray-light-1": "#faf9f9",
         "gray-light-2": "#f4f2f2",
         "gray-light-3": "#f0eeee",
