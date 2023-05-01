@@ -2,7 +2,7 @@ import { IoSearch } from "react-icons/io5";
 
 const HeaderForm = () => {
   return (
-    <form className="flex items-center justify-center flex-[0_0_100%] md:flex-[0_0_40%] order-1 md:-order-none bg-gray-light-2 md:rounded-full">
+    <form className="flex items-center justify-center flex-[0_0_100%] md:flex-[0_0_40%] order-1 md:-order-none bg-gray-light-2 md:rounded-full mt-2 md:mt-0">
       <input
         type="text"
         name="search"

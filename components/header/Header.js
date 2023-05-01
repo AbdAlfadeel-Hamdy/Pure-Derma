@@ -2,22 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoCart, IoPerson } from "react-icons/io5";
 import HeaderForm from "./HeaderForm";
+import logoImage from "@/public/images/logo.png";
 
 const Header = () => {
   return (
-    <header className="flex justify-between px-4 md:px-8 items-center flex-wrap h-24 content-around">
+    <header className="flex justify-between pt-2 md:px-8 items-center flex-wrap h-24">
       <div>
-        <Link href="/" className="w-24 h-24 block relative overflow-hidden">
-          <Image src="/images/logo.png" width={400} height={400} />
+        <Link
+          href="/"
+          className="w-16 h-16 md:w-24 md:h-24 block relative overflow-hidden"
+        >
+          <Image src={logoImage} alt="Pure Derma Logo" />
         </Link>
       </div>
       <HeaderForm />
-      <nav className="flex items-center self-stretch">
-        <div className="w-8 h-full flex items-center justify-center">
-          <IoCart />
+      <nav className="flex items-center basis-24">
+        <div className="flex items-center justify-center hover:bg-gray-light-2 h-16 px-2 basis-16">
+          <IoCart size={24} />
         </div>
-        <div className="w-8 h-full flex items-center justify-center">
-          <IoPerson />
+        <div className="flex items-center justify-center hover:bg-gray-light-2 h-16 px-2 basis-16">
+          <IoPerson size={24} />
         </div>
       </nav>
     </header>
