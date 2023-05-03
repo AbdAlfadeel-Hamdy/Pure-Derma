@@ -1,0 +1,30 @@
+.navlink::before {
+  transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
+    background-color 0.1s;
+  transform-origin: right;
+}
+
+.navlink svg {
+  margin-left: 16px;
+  margin-right: 0;
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+@media only screen and (max-width: 640px) {
+  .navlink svg {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 6px;
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .navlink svg {
+    width: 16px;
+    height: 16px;
+  }
+}

@@ -6,11 +6,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      ar: ["Tajawal"],
+      en: ["Roboto"],
+      "font-bi": ["Roboto", "Tajwal"],
+    },
     extend: {
-      fontFamily: {
-        ar: ["Tajawal"],
-        en: ["Roboto"],
-      },
       colors: {
         "primary-dark": "#e19c47",
         "primary-light": "#fbbd72",
