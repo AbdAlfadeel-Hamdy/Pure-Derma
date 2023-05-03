@@ -17,7 +17,7 @@ const NavLink = ({ href, title, icon }) => {
         className={`text-gray-light-1 visited:text-gray-light-1 uppercase visited:uppercase relative visited:relative z-10 visited:z-10 flex visited:flex items-center visited:items-center flex-col visited:flex-col px-1 visited:px-1 py-3 visited:py-3 sm:p-4 sm:visited:p-4 lg:py-3 lg:px-6 text-xs visited:text-xs sm:text-sm lg:text-base  sm:flex-row sm:visited:flex-row sm:justify-center lg:justify-start `}
       >
         {icon}
-        <span>{title}</span>
+        <span className="text-center">{title}</span>
       </Link>
     </li>
   );
