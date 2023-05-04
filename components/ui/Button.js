@@ -11,7 +11,7 @@ const Button = ({
   ...rest
 }) => {
   const styles = classes({
-    "rounded-[9px] font-semibold text-[16px]  px-4 py-2 duration-200": true,
+    "rounded-[9px] font-semibold text-[16px]  px-3 py-2 duration-200": true,
     "bg-primary text-white hover:bg-primary-dark ": primary,
     "bg-primary-light-1 text-primary-dark-1 hover:bg-white hover:shadow-[inset] hover:shadow-[0_0_0_3px_rgba(primary-dark-1)]  ":
       secondary,

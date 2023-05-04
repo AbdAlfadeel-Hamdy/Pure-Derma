@@ -7,13 +7,14 @@ const ProductItem = ({ product }) => {
     <li className="rounded-xl overflow-hidden shadow-md relative ">
       <Link href={`/products/${product.id}`}>
         <Image
-          src={product.imgUrl}
+          src={product.images[0]}
+          alt={product.title}
           width={800}
-          height={800}
-          className="h-[400px] w-[400px]  object-cover"
+          height={200}
+          className="h-[200px] min-w-full w-[400px]  object-cover"
         />
-        <div className="px-4 py-2 flex flex-col gap-4">
-          <h3 className="text-primary-dark font-semibold text-lg sm:text-xl lg:text-2xl uppercase sm:min-h-[56px] lg:min-h-[64px]">
+        <div className="px-2 py-4 flex flex-col gap-4">
+          <h3 className="text-primary font-semibold text-lg sm:text-xl lg:text-2xl uppercase sm:min-h-[56px] lg:min-h-[64px]">
             {product.title}
           </h3>
           <div className="text-4xl text-primary flex justify-center gap-4">
@@ -22,20 +23,26 @@ const ProductItem = ({ product }) => {
           <div className="flex flex-col gap-2">
             <div className="flex gap-2 sm:flex-col">
               <Button
+                name="show details"
                 primary
                 className="flex-1 flex items-center justify-center gap-2"
               >
                 <span>عرض التفاصيل</span> <IoMenu />
               </Button>
               <Button
+                name="add to cart"
                 secondary
-                className="flex-1 sm:p-2 flex items-center justify-center gap-1"
+                className="flex-1  flex items-center justify-center gap-2"
               >
                 <span>أضف إلى العربة</span>
                 <IoCart />
               </Button>
             </div>
-            <Button tertiary className="flex items-center justify-center gap-2">
+            <Button
+              name="buy now"
+              tertiary
+              className="flex items-center justify-center gap-2"
+            >
               <span>شراء الأن</span> <IoCheckmark />
             </Button>
           </div>

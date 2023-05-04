@@ -1,68 +1,12 @@
 import Gallery from "@/components/gallery/Gallery";
 import Overview from "@/components/overview/Overview";
 import TopProducts from "@/components/top-products/TopProducts";
-
 import Head from "next/head";
-const products = [
-  {
-    id: 0,
-    title: "PURE SACCO Post Laser Gel Cream",
-    price: 22.9,
-    imgUrl: "/images/products/Mock up_page-0001.jpg",
-    tags: ["جديد"],
-  },
-  {
-    id: 1,
-    title: "Hair Care product",
-    price: 22.9,
-    imgUrl: "/images/products/Mock up_page-0002.jpg",
-    tags: ["جديد"],
-  },
-  {
-    id: 2,
-    title: "Hair Care product",
-    price: 22.9,
-    imgUrl: "/images/products/Mock up_page-0003.jpg",
-    tags: ["جديد"],
-  },
-  {
-    id: 3,
-    title: "Hair Care product",
-    price: 22.9,
-    imgUrl: "/images/gallery/1.jpg",
-    tags: ["جديد"],
-  },
-  {
-    id: 2,
-    title: "Hair Care product",
-    price: 22.9,
-    imgUrl: "/images/products/Mock up_page-0003.jpg",
-    tags: ["جديد"],
-  },
-  {
-    id: 3,
-    title: "Hair Care product",
-    price: 22.9,
-    imgUrl: "/images/gallery/1.jpg",
-    tags: ["جديد"],
-  },
-  {
-    id: 2,
-    title: "Hair Care product",
-    price: 22.9,
-    imgUrl: "/images/products/Mock up_page-0003.jpg",
-    tags: ["جديد"],
-  },
-  {
-    id: 3,
-    title: "Hair Care product",
-    price: 22.9,
-    imgUrl: "/images/gallery/1.jpg",
-    tags: ["جديد"],
-  },
-];
+import { useState } from "react";
 
-export default function Home() {
+export default function Home({ products }) {
+  const [mainProducts, setMainProducts] = useState(products);
+  console.log(mainProducts);
   return (
     <>
       <Head>
@@ -76,4 +20,16 @@ export default function Home() {
       <TopProducts products={products} />
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const response = await fetch("https://dummyjson.com/products");
+  const data = await response.json();
+  console.log(data);
+
+  return {
+    props: {
+      products: data.products,
+    },
+  };
 }
