@@ -1,7 +1,6 @@
 import Gallery from "@/components/gallery/Gallery";
 import Overview from "@/components/overview/Overview";
 import TopProducts from "@/components/top-products/TopProducts";
-import Button from "@/components/ui/Button";
 
 import Head from "next/head";
 const products = [
@@ -9,21 +8,21 @@ const products = [
     id: 0,
     title: "PURE SACCO Post Laser Gel Cream",
     price: 22.9,
-    imgUrl: "/images/gallery/1.jpg",
+    imgUrl: "/images/products/Mock up_page-0001.jpg",
     tags: ["جديد"],
   },
   {
     id: 1,
     title: "Hair Care product",
     price: 22.9,
-    imgUrl: "/images/gallery/2.jpg",
+    imgUrl: "/images/products/Mock up_page-0002.jpg",
     tags: ["جديد"],
   },
   {
     id: 2,
     title: "Hair Care product",
     price: 22.9,
-    imgUrl: "/images/gallery/3.jpg",
+    imgUrl: "/images/products/Mock up_page-0003.jpg",
     tags: ["جديد"],
   },
   {
@@ -34,17 +33,31 @@ const products = [
     tags: ["جديد"],
   },
   {
-    id: 4,
+    id: 2,
     title: "Hair Care product",
     price: 22.9,
-    imgUrl: "/images/gallery/2.jpg",
-    tags: ["جديد", "new"],
+    imgUrl: "/images/products/Mock up_page-0003.jpg",
+    tags: ["جديد"],
   },
   {
-    id: 5,
+    id: 3,
     title: "Hair Care product",
     price: 22.9,
-    imgUrl: "/images/gallery/3.jpg",
+    imgUrl: "/images/gallery/1.jpg",
+    tags: ["جديد"],
+  },
+  {
+    id: 2,
+    title: "Hair Care product",
+    price: 22.9,
+    imgUrl: "/images/products/Mock up_page-0003.jpg",
+    tags: ["جديد"],
+  },
+  {
+    id: 3,
+    title: "Hair Care product",
+    price: 22.9,
+    imgUrl: "/images/gallery/1.jpg",
     tags: ["جديد"],
   },
 ];
