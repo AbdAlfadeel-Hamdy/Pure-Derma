@@ -1,3 +1,4 @@
+import ProductList from "../product/ProductList";
 import HeadingSecondary from "../ui/HeadingSecondary";
 
 const TopProducts = ({ products }) => {
@@ -5,6 +6,7 @@ const TopProducts = ({ products }) => {
     <section className="py-12 text-center">
       <div className="px-2">
         <HeadingSecondary>أفضل المنتجات</HeadingSecondary>
+        <ProductList products={products} />
       </div>
     </section>
   );

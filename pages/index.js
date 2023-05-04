@@ -3,6 +3,50 @@ import Overview from "@/components/overview/Overview";
 import TopProducts from "@/components/top-products/TopProducts";
 
 import Head from "next/head";
+const products = [
+  {
+    id: 0,
+    title: "Hair Care product",
+    price: 22.9,
+    imgUrl: "/images/gallery/1.jpg",
+    tags: ["hot"],
+  },
+  {
+    id: 1,
+    title: "Hair Care product",
+    price: 22.9,
+    imgUrl: "/images/gallery/2.jpg",
+    tags: ["hot"],
+  },
+  {
+    id: 2,
+    title: "Hair Care product",
+    price: 22.9,
+    imgUrl: "/images/gallery/3.jpg",
+    tags: ["hot"],
+  },
+  {
+    id: 3,
+    title: "Hair Care product",
+    price: 22.9,
+    imgUrl: "/images/gallery/1.jpg",
+    tags: ["hot"],
+  },
+  {
+    id: 4,
+    title: "Hair Care product",
+    price: 22.9,
+    imgUrl: "/images/gallery/2.jpg",
+    tags: ["hot", "new"],
+  },
+  {
+    id: 5,
+    title: "Hair Care product",
+    price: 22.9,
+    imgUrl: "/images/gallery/3.jpg",
+    tags: ["hot"],
+  },
+];
 
 export default function Home() {
   return (
@@ -15,7 +59,7 @@ export default function Home() {
       </Head>
       <Gallery />
       <Overview />
-      <TopProducts products />
+      <TopProducts products={products} />
     </>
   );
 }
