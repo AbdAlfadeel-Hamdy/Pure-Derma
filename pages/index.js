@@ -1,5 +1,7 @@
 import Gallery from "@/components/gallery/Gallery";
 import Overview from "@/components/overview/Overview";
+import TopProducts from "@/components/top-products/TopProducts";
+
 import Head from "next/head";
 
 export default function Home() {
@@ -13,6 +15,7 @@ export default function Home() {
       </Head>
       <Gallery />
       <Overview />
+      <TopProducts products />
     </>
   );
 }
