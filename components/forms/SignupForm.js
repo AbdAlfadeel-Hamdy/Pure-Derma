@@ -71,7 +71,7 @@ const SignupForm = () => {
   return (
     <form
       onSubmit={submitFormHandler}
-      className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-3 xl:gap-x-4 gap-y-3  bg-primary max-w-[500px] lg:max-w-[100%]  relative pt-4 pb-12 lg:py-6 px-2 sm:px-4 lg:px-8 rounded-lg mx-auto"
+      className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-3 xl:gap-x-4 gap-y-3  bg-primary max-w-[500px] lg:max-w-[100%]  relative pt-4 pb-12 sm:pt-6 sm:pb-14 lg:py-8 px-2 sm:px-6 lg:px-8 rounded-lg mx-auto"
     >
       <div>
         <FormLabel id="username">اسم المستخدم</FormLabel>

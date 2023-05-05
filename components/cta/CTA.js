@@ -1,5 +1,5 @@
-const { default: SignupForm } = require("../forms/SignupForm");
-const { default: HeadingSecondary } = require("../ui/HeadingSecondary");
+import SignupForm from "../forms/SignupForm";
+import HeadingSecondary from "../ui/HeadingSecondary";
 
 const CTA = () => {
   return (
