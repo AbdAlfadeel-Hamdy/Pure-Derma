@@ -3,6 +3,7 @@ import FormInput from "./FormInput";
 import FormLabel from "./FormLabel";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const SignupForm = () => {
   const [enteredName, setEnteredName] = useState("");
@@ -12,6 +13,7 @@ const SignupForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const router = useRouter();
   const nameInputHandler = (e) => {
     setEnteredName(e.target.value);
   };
@@ -67,6 +69,11 @@ const SignupForm = () => {
     setSuccess("تم بنجاح");
     clearInputs();
     console.log(data);
+    setTimeout(() => {
+      setSuccess("");
+      const path = router.pathname;
+      if (path !== "/") router.push("/");
+    }, 2000);
   };
   return (
     <form

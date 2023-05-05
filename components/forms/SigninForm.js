@@ -32,7 +32,7 @@ const SigninForm = () => {
     e.preventDefault();
     setIsLoading(true);
     const response = await fetch(
-      "https://pure-derma.onrender.com/api/v1/users/signup",
+      "https://pure-derma.onrender.com/api/v1/users/login",
       {
         method: "POST",
         body: JSON.stringify({
