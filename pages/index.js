@@ -1,3 +1,5 @@
+import CTA from "@/components/cta/CTA";
+import SignupForm from "@/components/forms/SignupForm";
 import Gallery from "@/components/gallery/Gallery";
 import Overview from "@/components/overview/Overview";
 import TopProducts from "@/components/top-products/TopProducts";
@@ -18,6 +20,7 @@ export default function Home({ products }) {
       <Gallery />
       <Overview />
       <TopProducts products={products} />
+      <CTA />
     </>
   );
 }
