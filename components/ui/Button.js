@@ -12,7 +12,7 @@ const Button = ({
   ...rest
 }) => {
   const styles = classes({
-    "rounded-[9px] font-semibold text-sm sm:text-base lg:text-lg  px-3 py-2 duration-200": true,
+    "rounded-[9px] font-medium sm:font-semibold text-xs sm:text-base lg:text-lg  px-3 py-2 duration-200": true,
     "bg-primary text-white hover:bg-primary-dark ": primary,
     "bg-primary-light-2 text-primary-dark-1 hover:bg-white hover:shadow-[inset] hover:shadow-[0_0_0_3px_rgba(primary-dark-1)]  ":
       secondary,

@@ -14,7 +14,7 @@ const CartItem = ({ product, addItemHandler, removeItemHandler }) => {
         src={product.src}
         width={150}
         height={200}
-        className="h-auto sm:w-[200px]"
+        className="h-auto sm:w-[250px]"
       />
       <div className="border-r border-gary-light-2 flex-1 flex flex-col">
         <div className="sm:flex-2 flex flex-col justify-between gap-8 py-4 px-4 border-b border-gray-light-2 ">
@@ -36,10 +36,10 @@ const CartItem = ({ product, addItemHandler, removeItemHandler }) => {
             </button>
           </div>
         </div>
-        <div className="flex justify-between   items-center flex-1 px-4 ">
+        <div className="flex justify-between    items-center flex-1 px-4 ">
           <span>الإجمالي</span>
           <div className="flex gap-2">
-            <span>{product.price * product.quantity}</span>
+            <span>{(product.price * product.quantity).toFixed(2)}</span>
             <span>جنيه</span>
           </div>
         </div>

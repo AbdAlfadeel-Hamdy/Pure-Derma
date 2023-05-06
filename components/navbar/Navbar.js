@@ -1,9 +1,10 @@
 import NavLink from "./NavLink";
 import { IoHome, IoHeart, IoBody, IoWoman } from "react-icons/io5";
+import { MdFace4 } from "react-icons/md";
 const links = [
   { id: 1, title: "الرئيسية", href: "/", icon: IoHome() },
-  { id: 2, title: "skin care", href: "/skin-care", icon: IoBody() },
-  { id: 3, title: "hair care", href: "/hair-care", icon: IoWoman() },
+  { id: 2, title: "منتجات البشرة", href: "/skin-care", icon: IoWoman() },
+  { id: 3, title: "منتجات الشعر", href: "/hair-care", icon: MdFace4() },
   { id: 4, title: "المفضلة", href: "/wishlist", icon: IoHeart() },
 ];
 

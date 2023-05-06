@@ -14,10 +14,10 @@ const ProductItem = ({ product }) => {
           className="h-[200px] min-w-full w-[400px]  object-cover"
         />
         <div className="px-2 py-4 flex flex-col gap-4">
-          <h3 className="text-primary  text-lg sm:text-xl lg:text-2xl uppercase sm:min-h-[56px] lg:min-h-[64px]">
+          <h3 className="text-primary sm:text-xl lg:text-2xl uppercase sm:min-h-[56px] lg:min-h-[64px]">
             {product.title}
           </h3>
-          <div className="text-4xl text-primary font-light flex justify-center gap-4">
+          <div className="text-2xl sm:text-3xl text-primary font-light flex justify-center gap-3">
             {product.price} <span>جنيه</span>
           </div>
           <div className="flex flex-col gap-2">
@@ -32,7 +32,7 @@ const ProductItem = ({ product }) => {
               <Button
                 name="add to cart"
                 secondary
-                className="flex-1  flex items-center justify-center gap-2"
+                className="flex-1 flex items-center justify-center gap-2"
               >
                 <span>أضف إلى العربة</span>
                 <IoCart />
