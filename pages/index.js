@@ -1,6 +1,6 @@
 import CTA from "@/components/cta/CTA";
 import Gallery from "@/components/gallery/Gallery";
-import Overview from "@/components/overview/Overview";
+// import Overview from "@/components/overview/Overview";
 import TopProducts from "@/components/top-products/TopProducts";
 import Head from "next/head";
 
@@ -14,7 +14,7 @@ export default function Home({ products }) {
         <link rel="icon" href="images/logo.png" />
       </Head>
       <Gallery />
-      <Overview />
+      {/* <Overview /> */}
       <TopProducts products={products} />
       <CTA />
     </>

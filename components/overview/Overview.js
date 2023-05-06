@@ -25,12 +25,15 @@ const Overview = () => {
           Kafr El-Shaikh, Egypt
         </a>
       </div>
-      <div className="bg-primary text-white ml-2 sm:ml-6 py-0 px-2 sm:px-4 lg:px-6 flex flex-col items-center justify-center self-stretch ">
-        <div className="font-light text-base lg:text-xl">10</div>
-        <div className="text-[10px]">مشتركين</div>
-      </div>
     </section>
   );
 };
 
 export default Overview;
+
+{
+  /* <div className="bg-primary text-white ml-2 sm:ml-6 py-0 px-2 sm:px-4 lg:px-6 flex flex-col items-center justify-center self-stretch ">
+        <div className="font-light text-base lg:text-xl">10</div>
+        <div className="text-[10px]">مشتركين</div>
+      </div> */
+}
