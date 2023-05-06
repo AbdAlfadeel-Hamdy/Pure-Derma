@@ -55,13 +55,31 @@ const Cart = () => {
     setProducts(updatedProducts);
   };
   return (
-    <section className="pt-8 sm:pt-10 lg:pt-12 px-4">
-      <HeadingSecondary className="pb-8">سلة المشتريات</HeadingSecondary>
+    <section className="py-8 sm:pt-10 lg:py-12 px-8">
+      <HeadingSecondary className="pb-8">سلة المشتروات</HeadingSecondary>
+      {!products.length && (
+        <p className="text-center text-sm sm:text-lg lg:text-2xl">
+          لم تقم بإضافة أي منتج{" "}
+        </p>
+      )}
       <CartList
         products={products}
         addItemHandler={addItemHandler}
         removeItemHandler={removeItemHandler}
       />
+      {!!products.length && (
+        <div className="border-t border-gray-light-2 flex justify-between pt-6">
+          <span>مجموع التكلفة</span>
+          <span>
+            {products
+              .reduce(
+                (prev, product) => prev + product.price * product.quantity,
+                0
+              )
+              .toFixed(2)}
+          </span>
+        </div>
+      )}
     </section>
   );
 };

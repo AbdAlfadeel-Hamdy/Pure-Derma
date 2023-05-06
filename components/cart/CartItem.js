@@ -9,34 +9,34 @@ const CartItem = ({ product, addItemHandler, removeItemHandler }) => {
     removeItemHandler(product.id);
   };
   return (
-    <li className="flex bg-white rounded-lg shadow-md overflow-hidden ">
+    <li className="flex flex-col sm:flex-row bg-white rounded-lg shadow-md overflow-hidden text-lg max-w-[300px] sm:max-w-none">
       <Image
         src={product.src}
-        width={150}
+        width={400}
         height={200}
-        className="h-auto sm:w-[250px]"
+        className="h-[200px] sm:w-[200px]"
       />
-      <div className="border-r border-gary-light-2 flex-1 flex flex-col">
-        <div className="sm:flex-2 flex flex-col justify-between gap-8 py-4 px-4 border-b border-gray-light-2 ">
-          <h2 className=" text-center sm:text-lg">{product.title}</h2>
-          <div className="text-xl flex gap-2">
+      <div className="border-t sm:border-r sm:border-t-0 border-gary-light-2 flex-1 flex flex-col">
+        <div className="flex flex-col gap-2 sm:gap-6 py-4 px-4 border-b border-gray-light-2 ">
+          <h2 className="text-center sm:text-xl">{product.title}</h2>
+          <div className="flex gap-2 justify-center mb-4 ">
             <span>{product.price}</span>
             <span>جنيه</span>
           </div>
-          <div className="text-xl flex justify-between ">
+          <div className="flex justify-between ">
             <span>الكمية</span>
-            <div>
+            <div className="flex gap-4">
               <button onClick={addHandler}>
-                <IoAdd />
+                <IoAdd className="hover:text-primary-dark-1" />
+              </button>
+              <span>{product.quantity}</span>
+              <button onClick={removeHandler}>
+                <IoRemove className="hover:text-primary-dark-1" />
               </button>
             </div>
-            <span>{product.quantity}</span>
-            <button onClick={removeHandler}>
-              <IoRemove />
-            </button>
           </div>
         </div>
-        <div className="flex justify-between    items-center flex-1 px-4 ">
+        <div className="flex justify-between sm:gap-6 lg:justify-between items-center flex-1 p-4">
           <span>الإجمالي</span>
           <div className="flex gap-2">
             <span>{(product.price * product.quantity).toFixed(2)}</span>
