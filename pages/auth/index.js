@@ -1,9 +1,6 @@
 import Link from "next/link";
-
-const { default: SigninForm } = require("@/components/forms/SigninForm");
-const {
-  default: HeadingSecondary,
-} = require("@/components/ui/HeadingSecondary");
+import SigninForm from "@/components/forms/SigninForm";
+import HeadingSecondary from "@/components/ui/HeadingSecondary";
 
 const SigninPage = () => {
   return (

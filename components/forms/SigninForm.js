@@ -3,6 +3,7 @@ import FormInput from "./FormInput";
 import FormLabel from "./FormLabel";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useState } from "react";
+import axios from "axios";
 
 const SigninForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -31,27 +32,39 @@ const SigninForm = () => {
   const submitFormHandler = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const response = await fetch(
-      "https://pure-derma.onrender.com/api/v1/users/login",
+    const response = await axios.post(
+      "/users/login",
       {
-        method: "POST",
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          withCredentials: true,
-        },
+        email: enteredEmail,
+        password: enteredPassword,
+      },
+      {
+        baseURL: "https://pure-derma.onrender.com/api/v1",
+        // withCredentials: true,
       }
     );
+    // const response = await fetch(
+    //   "https://pure-derma.onrender.com/api/v1/users/login",
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       email: enteredEmail,
+    //       password: enteredPassword,
+    //     }),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       withCredentials: true,
+    //     },
+    //   }
+    // );
 
-    if (!response.ok) {
-      setError("كلمة مرور غير متطابقة");
-      setIsLoading(false);
-      return;
-    }
-    const data = await response.json();
+    // if (!response.ok) {
+    //   setError("كلمة مرور غير متطابقة");
+    //   setIsLoading(false);
+    //   return;
+    // }
+    // const data = await response.json();
+    const { data } = response;
     setIsLoading(false);
     setSuccess("تم بنجاح");
     clearInputs();
