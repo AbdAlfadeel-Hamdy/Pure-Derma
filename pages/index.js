@@ -21,10 +21,9 @@ export default function Home({ products }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   const response = await fetch("https://dummyjson.com/products");
   const data = await response.json();
-  console.log(data);
 
   return {
     props: {
