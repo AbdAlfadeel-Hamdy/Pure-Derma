@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { IoAdd, IoRemove } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { addToCartAction, removeFromCartAction } from "@/store/cart-slice";
+import { addToCartAction, removeFromCartAction } from "@/store/cart-actions";
 
 const CartItem = ({ product }) => {
   const dispatch = useDispatch();

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const cartInitialState = {
   cartItems: [],
@@ -35,42 +34,4 @@ const cartSlice = createSlice({
 });
 
 export const cartActions = cartSlice.actions;
-
-export const addToCartAction = (productId) => async (dispatch) => {
-  const response = await axios.post(
-    "/cart",
-    {
-      productId,
-    },
-    {
-      baseURL: "https://pure-derma.onrender.com/api/v1",
-    }
-  );
-  const { data } = response;
-  dispatch(cartActions.addToCart(data));
-};
-
-export const removeFromCartAction = (productId) => async (dispatch) => {
-  const response = await axios.delete(`/cart/${productId}`, {
-    baseURL: "https://pure-derma.onrender.com/api/v1",
-  });
-  const { data } = response;
-  dispatch(cartActions.removeFromCart(data));
-};
-
-export const clearCartAction = () => async (dispatch) => {
-  await axios.delete(`/cart`, {
-    baseURL: "https://pure-derma.onrender.com/api/v1",
-  });
-  dispatch(cartActions.clearCart());
-};
-
-export const getUserCartAction = () => async (dispatch) => {
-  const response = await axios.get("/cart", {
-    baseURL: "https://pure-derma.onrender.com/api/v1",
-  });
-  const { data } = response;
-  dispatch(cartActions.getUserCart(data));
-};
-
 export default cartSlice.reducer;

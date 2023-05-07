@@ -42,38 +42,34 @@ const SignupForm = () => {
   const submitFormHandler = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const response = await fetch(
-      "https://pure-derma.onrender.com/api/v1/users/signup",
-      {
-        method: "POST",
-        body: JSON.stringify({
+    try {
+      const response = await axios.post(
+        "/users/signup",
+        {
           name: enteredName,
           email: enteredEmail,
           password: enteredPassword,
           passwordConfirm: enteredConfirmPassword,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          withCredentials: true,
         },
-      }
-    );
+        {
+          baseURL: "https://pure-derma.onrender.com/api/v1",
+          // withCredentials: true,
+        }
+      );
 
-    if (!response.ok) {
-      setError("كلمة مرور غير متطابقة");
-      setIsLoading(false);
-      return;
-    }
-    const data = await response.json();
-    setIsLoading(false);
-    setSuccess("تم بنجاح");
-    clearInputs();
-    console.log(data);
-    setTimeout(() => {
-      setSuccess("");
+      const { data } = response;
+      console.log(data);
+      setSuccess("تم التسجيل بنجاح");
+      clearInputs();
+      setTimeout(() => {
+        router.push("/");
+      }, 3 * 1000);
       const path = router.pathname;
       if (path !== "/") router.push("/");
-    }, 2000);
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
   };
   return (
     <form
@@ -144,6 +140,10 @@ const SignupForm = () => {
       {!isLoading && !error && success && (
         <p className="flex justify-center text-white absolute lg:relative bottom-2 lg:bottom-auto lg:self-end w-full ">
           {success}
+          <IoCheckmark
+            className="bg-primary-dark-3 rounded-full p-1 w-5 h-5"
+            color="#fff"
+          />
         </p>
       )}
     </form>
