@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import HeadingSecondary from "@/components/ui/HeadingSecondary";
 import SignupForm from "@/components/forms/SignupForm";
 

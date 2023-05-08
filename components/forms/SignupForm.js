@@ -4,6 +4,8 @@ import FormLabel from "./FormLabel";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { IoCheckmark } from "react-icons/io5";
 
 const SignupForm = () => {
   const [enteredName, setEnteredName] = useState("");
@@ -53,7 +55,7 @@ const SignupForm = () => {
         },
         {
           baseURL: "https://pure-derma.onrender.com/api/v1",
-          // withCredentials: true,
+          withCredentials: true,
         }
       );
 
@@ -74,7 +76,7 @@ const SignupForm = () => {
   return (
     <form
       onSubmit={submitFormHandler}
-      className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-3 xl:gap-x-4 gap-y-3  bg-primary max-w-[500px] lg:max-w-[100%]  relative pt-6 pb-12 sm:pt-6 sm:pb-14 lg:py-8 px-4 sm:px-6 lg:px-8 rounded-lg mx-auto"
+      className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-3 xl:gap-x-4 gap-y-3  bg-primary max-w-[500px] lg:max-w-[100%]  relative pt-6 pb-12 sm:pt-6 sm:pb-14 lg:py-8 px-4 sm:px-8 lg:px-12 rounded-lg mx-auto"
     >
       <div>
         <FormLabel id="username">اسم المستخدم</FormLabel>

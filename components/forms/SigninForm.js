@@ -44,7 +44,7 @@ const SigninForm = () => {
         },
         {
           baseURL: "https://pure-derma.onrender.com/api/v1",
-          // withCredentials: true,
+          withCredentials: true,
         }
       );
 
