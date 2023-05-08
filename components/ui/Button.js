@@ -39,11 +39,3 @@ const Button = ({
 };
 
 export default Button;
-
-// {
-/* {product.tags.map((tag) => (
-              <span className="bg-green-500 inline-block text-gray-dark-1 rounded-full font-semibold uppercase text-[10px] sm:text-[11px] lg:text-[12px] px-[4px] py-[8px]">
-                {tag}
-              </span>
-            ))} */
-// }

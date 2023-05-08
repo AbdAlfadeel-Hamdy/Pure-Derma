@@ -2,6 +2,7 @@ import CTA from "@/components/cta/CTA";
 import Gallery from "@/components/gallery/Gallery";
 // import Overview from "@/components/overview/Overview";
 import TopProducts from "@/components/top-products/TopProducts";
+import axios from "axios";
 
 export default function Home({ products }) {
   return (
@@ -15,8 +16,11 @@ export default function Home({ products }) {
 }
 
 export async function getStaticProps() {
-  const response = await fetch("https://dummyjson.com/products");
-  const data = await response.json();
+  const response = await axios("/products", {
+    baseURL: "https://dummyjson.com",
+    withCredentials: true,
+  });
+  const { data } = response;
 
   return {
     props: {

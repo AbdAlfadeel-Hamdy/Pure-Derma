@@ -1,4 +1,5 @@
 import { cartActions } from "./cart-slice";
+import axios from "axios";
 
 export const addToCartAction = (productId) => async (dispatch) => {
   try {

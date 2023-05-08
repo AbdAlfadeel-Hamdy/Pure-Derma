@@ -1,9 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import Button from "../ui/Button";
 import { IoCart, IoCheckmark, IoMenu } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { addToCartAction } from "@/store/cart-slice";
+import { addToCartAction } from "@/store/cart-actions";
 const ProductItem = ({ product }) => {
   const dispatch = useDispatch();
   const addToCartHandler = () => {

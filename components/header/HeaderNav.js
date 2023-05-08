@@ -1,4 +1,4 @@
-import { IoCart, IoPerson } from "react-icons/io5";
+import { IoCart } from "react-icons/io5";
 import HeaderLink from "./HeaderLink";
 import { useSelector } from "react-redux";
 
