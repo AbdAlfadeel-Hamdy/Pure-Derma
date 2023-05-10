@@ -2,18 +2,19 @@ import Button from "../ui/Button";
 import FormInput from "./FormInput";
 import FormLabel from "./FormLabel";
 import BeatLoader from "react-spinners/BeatLoader";
-import { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { IoCheckmark } from "react-icons/io5";
-import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { loginAction } from "@/store/auth-actions";
+import { authActions } from "@/store/auth-slice";
 
 const SigninForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const router = useRouter();
+  const isLoading = useSelector((state) => state.auth.isLoading);
+  const success = useSelector((state) => state.auth.successMessage);
+  const error = useSelector((state) => state.auth.errorMessage);
+  const dispatch = useDispatch();
 
   const emailInputHandler = (e) => {
     setEnteredEmail(e.target.value);
@@ -22,45 +23,19 @@ const SigninForm = () => {
     setEnteredPassword(e.target.value);
   };
 
-  const clearInputs = () => {
-    setEnteredEmail("");
-    setEnteredPassword("");
-  };
+  useEffect(() => {
+    dispatch(authActions.clearFeedback());
+  }, []);
 
   const clearFeedbacks = () => {
-    setError("");
-    setSuccess("");
+    dispatch(authActions.clearFeedback());
   };
 
   const submitFormHandler = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    try {
-      const response = await axios.post(
-        "/users/login",
-        {
-          email: enteredEmail,
-          password: enteredPassword,
-        },
-        {
-          baseURL: "https://pure-derma.onrender.com/api/v1",
-          withCredentials: true,
-        }
-      );
-
-      const { data } = response;
-      console.log(data);
-      setSuccess("تم التسجيل بنجاح");
-      clearInputs();
-      setTimeout(() => {
-        router.push("/");
-      }, 3 * 1000);
-      router.push("/");
-    } catch (err) {
-      setError(err.message);
-    }
-    setIsLoading(false);
+    dispatch(loginAction(enteredEmail, enteredPassword));
   };
+
   return (
     <form
       onSubmit={submitFormHandler}

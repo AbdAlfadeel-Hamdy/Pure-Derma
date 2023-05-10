@@ -1,25 +1,29 @@
 import Image from "next/image";
 import Button from "../ui/Button";
 import { IoCart, IoCheckmark, IoMenu } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCartAction } from "@/store/cart-actions";
+import { useRouter } from "next/router";
 const ProductItem = ({ product }) => {
+  const loggedInUser = useSelector((state) => state.auth.loggedInUser);
   const dispatch = useDispatch();
+  const router = useRouter();
   const addToCartHandler = () => {
-    dispatch(addToCartAction(product.id));
+    if (!loggedInUser) router.push("/auth");
+    else dispatch(addToCartAction(product.id));
   };
   return (
     <li className="rounded-xl overflow-hidden shadow-md relative ">
-      <Image
-        src={product.images[0]}
+      {/* <Image
+        src={product.imageCover}
         alt={product.title}
         width={800}
         height={200}
         className="h-[200px] min-w-full w-[400px]  object-cover"
-      />
+      /> */}
       <div className="px-2 py-4 flex flex-col gap-4">
         <h3 className="text-primary sm:text-xl lg:text-2xl uppercase sm:min-h-[56px] lg:min-h-[64px]">
-          {product.title}
+          {product.name}
         </h3>
         <div className="text-2xl sm:text-3xl text-primary font-light flex justify-center gap-3">
           {product.price} <span>جنيه</span>

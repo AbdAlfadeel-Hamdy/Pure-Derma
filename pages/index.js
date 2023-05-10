@@ -15,16 +15,17 @@ export default function Home({ products }) {
   );
 }
 
-export async function getStaticProps() {
-  const response = await axios("/products", {
-    baseURL: "https://dummyjson.com",
+export async function getServerSideProps() {
+  const response = await axios.get("/products", {
+    baseURL: "http://localhost:5000/api/v1",
     withCredentials: true,
   });
+  console.log(response);
   const { data } = response;
 
   return {
     props: {
-      products: data.products,
+      products: data.doc,
     },
   };
 }
