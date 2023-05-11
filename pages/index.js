@@ -2,6 +2,7 @@ import CTA from "@/components/cta/CTA";
 import Gallery from "@/components/gallery/Gallery";
 // import Overview from "@/components/overview/Overview";
 import TopProducts from "@/components/top-products/TopProducts";
+import { API_SERVER } from "@/lib/constants";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -25,7 +26,7 @@ export default function Home({ products }) {
 
 export async function getStaticProps() {
   const response = await axios.get("/products", {
-    baseURL: "http://localhost:5000/api/v1",
+    baseURL: API_SERVER,
     withCredentials: true,
   });
   console.log(response);

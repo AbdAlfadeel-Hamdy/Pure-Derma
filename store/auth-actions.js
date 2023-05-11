@@ -2,6 +2,7 @@ import { authActions } from "./auth-slice";
 import axios from "axios";
 import Router from "next/router";
 import { uiActions } from "./ui-slice";
+import { API_SERVER } from "@/lib/constants";
 
 export const loginAction =
   (enteredEmail, enteredPassword) => async (dispatch) => {
@@ -14,7 +15,7 @@ export const loginAction =
           password: enteredPassword,
         },
         {
-          baseURL: "http://localhost:5000/api/v1",
+          baseURL: API_SERVER,
           withCredentials: true,
         }
       );
@@ -34,7 +35,7 @@ export const loginAction =
 export const logoutAction = () => async (dispatch) => {
   try {
     await axios.get("/users/logout", {
-      baseURL: "http://localhost:5000/api/v1",
+      baseURL: API_SERVER,
       withCredentials: true,
     });
     dispatch(authActions.logOut());
@@ -53,7 +54,7 @@ export const toggleFavoriteAction = (product) => async (dispatch) => {
           productId: product.id,
         },
         {
-          baseURL: "http://localhost:5000/api/v1",
+          baseURL: API_SERVER,
           withCredentials: true,
         }
       );
@@ -68,7 +69,7 @@ export const toggleFavoriteAction = (product) => async (dispatch) => {
     try {
       dispatch(uiActions.send("جاري حذف المنتج من المفضلة"));
       const response = await axios.delete(`/wishlist/${product.id}`, {
-        baseURL: "http://localhost:5000/api/v1",
+        baseURL: API_SERVER,
         withCredentials: true,
       });
       const { data } = response;

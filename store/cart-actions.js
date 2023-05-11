@@ -1,3 +1,4 @@
+import { API_SERVER } from "@/lib/constants";
 import { authActions } from "./auth-slice";
 import { cartActions } from "./cart-slice";
 import { uiActions } from "./ui-slice";
@@ -12,7 +13,7 @@ export const updateCartAction = (productId, quantity) => async (dispatch) => {
         quantity,
       },
       {
-        baseURL: "http://localhost:5000/api/v1",
+        baseURL: API_SERVER,
         withCredentials: true,
       }
     );
@@ -37,7 +38,7 @@ export const addToCartAction = (productId) => async (dispatch) => {
         productId,
       },
       {
-        baseURL: "http://localhost:5000/api/v1",
+        baseURL: API_SERVER,
         withCredentials: true,
       }
     );
@@ -58,7 +59,7 @@ export const removeFromCartAction = (productId) => async (dispatch) => {
   try {
     dispatch(uiActions.send("جاري حذف المنتج من العربة"));
     const response = await axios.delete(`/cart/${productId}`, {
-      baseURL: "http://localhost:5000/api/v1",
+      baseURL: API_SERVER,
       withCredentials: true,
     });
     const { data } = response;
@@ -78,7 +79,7 @@ export const clearCartAction = () => async (dispatch) => {
   try {
     dispatch(uiActions.send("جاري حذف محتويات العربة"));
     await axios.delete(`/cart`, {
-      baseURL: "http://localhost:5000/api/v1",
+      baseURL: API_SERVER,
       withCredentials: true,
     });
     dispatch(uiActions.success("تم حذف محتويات العربة"));
@@ -96,7 +97,7 @@ export const clearCartAction = () => async (dispatch) => {
 export const getUserCartAction = () => async (dispatch) => {
   try {
     const response = await axios.get("/cart", {
-      baseURL: "http://localhost:5000/api/v1",
+      baseURL: API_SERVER,
       withCredentials: true,
     });
     const { data } = response;
