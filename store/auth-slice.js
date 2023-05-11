@@ -5,6 +5,7 @@ const authInitialState = {
   successMessage: "",
   errorMessage: "",
   isLoading: false,
+  wishlist: [],
 };
 
 const authSlice = createSlice({
@@ -27,13 +28,19 @@ const authSlice = createSlice({
     },
     login(state, action) {
       state.loggedInUser = action.payload;
+      state.wishlist = action.payload.wishlist;
     },
 
     logOut(state) {
       state.loggedInUser = null;
+      state.wishlist = [];
     },
     updateUserCart(state, action) {
       state.loggedInUser.numOfCart = action?.payload;
+    },
+    toggleFavorite(state, action) {
+      console.log(action.payload);
+      state.wishlist = action.payload;
     },
   },
 });

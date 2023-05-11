@@ -29,7 +29,8 @@ const cartSlice = createSlice({
       state.totalCartPrice = cart.totalCartPrice;
     },
     clearCart(state) {
-      state = cartInitialState;
+      state.cartItems = [];
+      state.totalCartPrice = 0;
     },
   },
 });

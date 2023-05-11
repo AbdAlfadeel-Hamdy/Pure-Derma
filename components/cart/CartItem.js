@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { IoAdd, IoRemove } from "react-icons/io5";
+import { IoAdd, IoRemove, IoStop } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { removeFromCartAction, updateCartAction } from "@/store/cart-actions";
 import { useState } from "react";
@@ -22,9 +22,11 @@ const CartItem = ({ product }) => {
     dispatch(updateCartAction(product.product, quantity));
     setQuentity("");
   };
-
+  const deleteCartItemHandler = () => {
+    dispatch(removeFromCartAction(product.product));
+  };
   return (
-    <li className="flex flex-col sm:flex-row bg-white rounded-lg shadow-md overflow-hidden text-lg max-w-[300px] sm:max-w-none">
+    <li className="flex flex-col sm:flex-row bg-white rounded-lg shadow-md overflow-hidden text-lg max-w-[300px] sm:max-w-none relative">
       {/* <Image
         src={product.src}
         width={400}
@@ -69,6 +71,12 @@ const CartItem = ({ product }) => {
           </div>
         </div>
       </div>
+      <span>
+        <IoStop
+          className="absolute top-1 left-2 cursor-pointer"
+          onClick={deleteCartItemHandler}
+        />
+      </span>
     </li>
   );
 };
