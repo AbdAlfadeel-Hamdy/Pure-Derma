@@ -20,9 +20,9 @@ const ProductItem = ({ product }) => {
     if (!loggedInUser) router.push("/auth");
     else dispatch(addToCartAction(product.id));
   };
-
   const toggleFavoriteHandler = async () => {
-    dispatch(toggleFavoriteAction(product));
+    if (!loggedInUser) router.push("/auth");
+    else dispatch(toggleFavoriteAction(product));
   };
   return (
     <li className="rounded-xl overflow-hidden shadow-md relative hover:-translate-y-1 hover:shadow-lg lg:hover:shadow-xl duration-200 ">

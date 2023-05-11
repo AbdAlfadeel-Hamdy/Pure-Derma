@@ -29,17 +29,27 @@ const authSlice = createSlice({
     login(state, action) {
       state.loggedInUser = action.payload;
       state.wishlist = action.payload.wishlist;
+      localStorage.setItem("loggedInUser", JSON.stringify(state.loggedInUser));
+      localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
     },
 
     logOut(state) {
       state.loggedInUser = null;
       state.wishlist = [];
+      localStorage.removeItem("loggedInUser");
+      localStorage.removeItem("wishlist");
     },
     updateUserCart(state, action) {
       state.loggedInUser.numOfCart = action?.payload;
+      localStorage.setItem("loggedInUser", JSON.stringify(state.loggedInUser));
     },
     toggleFavorite(state, action) {
       state.wishlist = action.payload;
+      localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
+    },
+    persistUser(state, action) {
+      state.loggedInUser = action.payload.loggedInUser;
+      state.wishlist = action.payload.wishlist;
     },
   },
 });

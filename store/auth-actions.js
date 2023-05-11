@@ -61,6 +61,7 @@ export const toggleFavoriteAction = (product) => async (dispatch) => {
       dispatch(uiActions.success("تم إضافة المنتج إلى المفضلة"));
       dispatch(authActions.toggleFavorite(data.data));
     } catch (error) {
+      dispatch(uiActions.error("حدث خطأ أثناء إضافة المنتج إلى المفضلة"));
       console.log(error);
     }
   } else {
