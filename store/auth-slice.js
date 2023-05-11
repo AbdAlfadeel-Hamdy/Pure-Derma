@@ -39,7 +39,6 @@ const authSlice = createSlice({
       state.loggedInUser.numOfCart = action?.payload;
     },
     toggleFavorite(state, action) {
-      console.log(action.payload);
       state.wishlist = action.payload;
     },
   },

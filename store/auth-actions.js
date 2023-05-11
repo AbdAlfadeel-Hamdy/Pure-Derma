@@ -1,6 +1,7 @@
 import { authActions } from "./auth-slice";
 import axios from "axios";
 import Router from "next/router";
+import { uiActions } from "./ui-slice";
 
 export const loginAction =
   (enteredEmail, enteredPassword) => async (dispatch) => {
@@ -40,4 +41,44 @@ export const logoutAction = () => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const toggleFavoriteAction = (product) => async (dispatch) => {
+  if (!product.isFavorite) {
+    try {
+      dispatch(uiActions.send("جاري إضافة المنتج إلى المفضلة"));
+      const response = await axios.post(
+        "/wishlist",
+        {
+          productId: product.id,
+        },
+        {
+          baseURL: "http://localhost:5000/api/v1",
+          withCredentials: true,
+        }
+      );
+      const { data } = response;
+      dispatch(uiActions.success("تم إضافة المنتج إلى المفضلة"));
+      dispatch(authActions.toggleFavorite(data.data));
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    try {
+      dispatch(uiActions.send("جاري حذف المنتج من المفضلة"));
+      const response = await axios.delete(`/wishlist/${product.id}`, {
+        baseURL: "http://localhost:5000/api/v1",
+        withCredentials: true,
+      });
+      const { data } = response;
+      dispatch(uiActions.success("تم حذف المنتج من المفضلة"));
+      dispatch(authActions.toggleFavorite(data.data));
+    } catch (error) {
+      dispatch(uiActions.error("حدث خطأ أثناء حذف المنتج من المفضلة"));
+      console.log(error);
+    }
+  }
+  setTimeout(() => {
+    dispatch(uiActions.clear());
+  }, 3 * 1000);
 };

@@ -10,9 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { addToCartAction } from "@/store/cart-actions";
 import { useRouter } from "next/router";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { authActions } from "@/store/auth-slice";
+import { toggleFavoriteAction } from "@/store/auth-actions";
 
 const ProductItem = ({ product }) => {
   const loggedInUser = useSelector((state) => state.auth.loggedInUser);
@@ -22,42 +20,12 @@ const ProductItem = ({ product }) => {
     if (!loggedInUser) router.push("/auth");
     else dispatch(addToCartAction(product.id));
   };
-  // useEffect(() => {
-  //   if (!loggedInUser) setIsFavorite(false);
-  // }, [loggedInUser]);
+
   const toggleFavoriteHandler = async () => {
-    if (!product.isFavorite) {
-      try {
-        const response = await axios.post(
-          "/wishlist",
-          {
-            productId: product.id,
-          },
-          {
-            baseURL: "http://localhost:5000/api/v1",
-            withCredentials: true,
-          }
-        );
-        const { data } = response;
-        dispatch(authActions.toggleFavorite(data.data));
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      try {
-        const response = await axios.delete(`/wishlist/${product.id}`, {
-          baseURL: "http://localhost:5000/api/v1",
-          withCredentials: true,
-        });
-        const { data } = response;
-        dispatch(authActions.toggleFavorite(data.data));
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    dispatch(toggleFavoriteAction(product));
   };
   return (
-    <li className="rounded-xl overflow-hidden shadow-md relative ">
+    <li className="rounded-xl overflow-hidden shadow-md relative hover:-translate-y-1 hover:shadow-lg lg:hover:shadow-xl duration-200 ">
       {/* <Image
         src={product.imageCover}
         alt={product.title}
@@ -103,13 +71,13 @@ const ProductItem = ({ product }) => {
       </div>
       {!product.isFavorite && (
         <IoHeartOutline
-          className="absolute top-2 left-2 w-6 h-6 cursor-pointer"
+          className="absolute top-2 left-2 w-6 h-6 cursor-pointer text-primary-dark"
           onClick={toggleFavoriteHandler}
         />
       )}
       {product.isFavorite && (
         <IoHeart
-          className="absolute top-2 left-2 w-6 h-6 cursor-pointer"
+          className="absolute top-2 left-2 w-6 h-6 cursor-pointer text-primary-dark"
           onClick={toggleFavoriteHandler}
         />
       )}
