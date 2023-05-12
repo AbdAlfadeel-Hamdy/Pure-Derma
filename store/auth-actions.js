@@ -27,7 +27,8 @@ export const loginAction =
         dispatch(authActions.clearFeedback());
       }, 3 * 1000);
     } catch (error) {
-      dispatch(authActions.setError(error.message));
+      console.log(error);
+      dispatch(authActions.setError("البريد الإلكتروني أو كلمة المرور خاطئة"));
     }
     dispatch(authActions.setLoading(false));
   };

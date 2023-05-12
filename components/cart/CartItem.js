@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { IoAdd, IoRemove, IoStop } from "react-icons/io5";
+import { IoAdd, IoClose, IoRemove } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { removeFromCartAction, updateCartAction } from "@/store/cart-actions";
 import { useState } from "react";
+import Button from "../ui/Button";
 
 const CartItem = ({ product }) => {
   const [quantity, setQuentity] = useState("");
@@ -26,54 +27,67 @@ const CartItem = ({ product }) => {
     dispatch(removeFromCartAction(product.product));
   };
   return (
-    <li className="flex flex-col sm:flex-row bg-white rounded-lg shadow-md overflow-hidden text-lg max-w-[300px] sm:max-w-none relative">
+    <li className="flex sm:flex-row bg-white rounded-lg shadow-md hover:-translate-y-2 hover:shadow-lg duration-200 overflow-hidden text-lg sm:max-w-none relative">
       {/* <Image
         src={product.src}
         width={400}
         height={200}
         className="h-[200px] sm:w-[200px]"
       /> */}
-
-      <div className="border-t sm:border-r sm:border-t-0 border-gary-light-2 flex-1 flex flex-col">
-        <div className="flex flex-col gap-2 sm:gap-6 py-4 px-4 border-b border-gray-light-2 ">
-          <h2 className="text-center sm:text-xl">{product.name}</h2>
-          <div className="flex gap-2 justify-center mb-4 ">
-            <span>{product.price}</span>
-            <span>جنيه</span>
+      <div className="w-28 flex-shrink-0">Image</div>
+      <div className="flex-1">
+        <div className="border-b border-gray-light-2 p-2 pb-6 ">
+          <h2 className="text-center sm:text-xl mb-2">product title</h2>
+          <div className="flex justify-center items-center gap-1 mb-4 ">
+            <span className="font-thin text-xl">{product.price}</span>
+            <span className="text-sm">جنيه</span>
           </div>
-          <div className="flex justify-between ">
+          <div className="flex gap-4">
             <span>الكمية</span>
             <span>{product.quantity}</span>
-            <div className="flex gap-4">
+            <div className="flex-1 flex justify-between">
               <button onClick={addToCartHandler}>
                 <IoAdd className="hover:text-primary-dark-1" />
               </button>
-              <input
-                type="text"
-                placeholder={product.quantity}
-                value={quantity}
-                onChange={quantityInputHandler}
-              />
-              {quantity && (
-                <button onClick={updateQuantityHandler}>Update</button>
-              )}
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder={product.quantity}
+                  value={quantity}
+                  onChange={quantityInputHandler}
+                  className="w-10 text-center border border-gray-light-2 rounded-md outline-none focus:border-gray-light-4"
+                />
+                {quantity && (
+                  <Button
+                    primary
+                    onClick={updateQuantityHandler}
+                    className="absolute top-[110%] left-1/2 -translate-x-1/2 text-xs px-[1px] py-[1px]"
+                  >
+                    تحديث
+                  </Button>
+                )}
+              </div>
+
               <button onClick={removeFromCartHandler}>
                 <IoRemove className="hover:text-primary-dark-1" />
               </button>
             </div>
           </div>
         </div>
-        <div className="flex justify-between sm:gap-6 lg:justify-between items-center flex-1 p-4">
+        <div className="flex justify-between sm:gap-6 lg:justify-between items-center flex-1 p-2">
           <span>الإجمالي</span>
-          <div className="flex gap-2">
-            <span>{(product.price * product.quantity).toFixed(2)}</span>
-            <span>جنيه</span>
+          <div className="flex gap-1 items-center">
+            <span className="font-thin text-xl">
+              {(product.price * product.quantity).toFixed(2)}
+            </span>
+            <span className="text-sm">جنيه</span>
           </div>
         </div>
       </div>
+
       <span>
-        <IoStop
-          className="absolute top-1 left-2 cursor-pointer"
+        <IoClose
+          className="absolute top-1 left-1 cursor-pointer bg-primary rounded-sm text-white hover:bg-primary-dark duration-200 w-6 h-6"
           onClick={deleteCartItemHandler}
         />
       </span>
