@@ -4,6 +4,39 @@ import Router from "next/router";
 import { uiActions } from "./ui-slice";
 import { API_SERVER } from "@/lib/constants";
 
+export const signupAction =
+  (enteredName, enteredEmail, enteredPassword, enteredConfirmPassword) =>
+  async (dispatch) => {
+    dispatch(authActions.setLoading(true));
+    try {
+      const response = await axios.post(
+        "/users/signup",
+        {
+          name: enteredName,
+          email: enteredEmail,
+          password: enteredPassword,
+          passwordConfirm: enteredConfirmPassword,
+        },
+        {
+          baseURL: API_SERVER,
+          withCredentials: true,
+        }
+      );
+      const { data } = response;
+      dispatch(authActions.login(data.user));
+      dispatch(authActions.setSuccess(`تم التسجيل بنجاح`));
+      setTimeout(() => {
+        Router.push("/");
+        dispatch(authActions.clearFeedback());
+      }, 3 * 1000);
+      const path = Router.pathname;
+      if (path !== "/") Router.push("/");
+    } catch (error) {
+      dispatch(authActions.setError("البريد الإلكتروني أو كلمة المرور خاطئة"));
+    }
+    dispatch(authActions.setLoading(false));
+  };
+
 export const loginAction =
   (enteredEmail, enteredPassword) => async (dispatch) => {
     dispatch(authActions.setLoading(true));
@@ -22,10 +55,10 @@ export const loginAction =
       const { data } = response;
       dispatch(authActions.login(data.user));
       dispatch(authActions.setSuccess(`تم التسجيل بنجاح`));
-      setTimeout(() => {
-        Router.push("/");
-        dispatch(authActions.clearFeedback());
-      }, 3 * 1000);
+      // setTimeout(() => {
+      //   Router.push("/");
+      //   dispatch(authActions.clearFeedback());
+      // }, 3 * 1000);
     } catch (error) {
       console.log(error);
       dispatch(authActions.setError("البريد الإلكتروني أو كلمة المرور خاطئة"));

@@ -32,7 +32,6 @@ const authSlice = createSlice({
       localStorage.setItem("loggedInUser", JSON.stringify(state.loggedInUser));
       localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
     },
-
     logOut(state) {
       state.loggedInUser = null;
       state.wishlist = [];

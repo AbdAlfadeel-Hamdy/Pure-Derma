@@ -29,7 +29,6 @@ export async function getStaticProps() {
     baseURL: API_SERVER,
     withCredentials: true,
   });
-  console.log(response);
   const { data } = response;
 
   return {
