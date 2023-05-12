@@ -27,25 +27,25 @@ const CartItem = ({ product }) => {
     dispatch(removeFromCartAction(product.product));
   };
   return (
-    <li className="flex sm:flex-row bg-white rounded-lg shadow-md hover:-translate-y-2 hover:shadow-lg duration-200 overflow-hidden text-lg sm:max-w-none relative">
+    <li className="flex sm:flex-row bg-white rounded-lg shadow-md hover:-translate-y-2 hover:shadow-lg duration-200 overflow-hidden text-lg max-w-md lg:max-w-lg xl:max-w-none relative">
       {/* <Image
         src={product.src}
         width={400}
         height={200}
         className="h-[200px] sm:w-[200px]"
       /> */}
-      <div className="w-28 flex-shrink-0">Image</div>
+      <div className="basis-[40%] flex-shrink-0 bg-red-300">Image</div>
       <div className="flex-1">
-        <div className="border-b border-gray-light-2 p-2 pb-6 ">
-          <h2 className="text-center sm:text-xl mb-2">product title</h2>
+        <div className="border-b border-gray-light-2 p-2 sm:p-4 pb-6 sm:pb-8 ">
+          <h2 className="text-center sm:text-xl mb-2 sm:mb-3">product title</h2>
           <div className="flex justify-center items-center gap-1 mb-4 ">
             <span className="font-thin text-xl">{product.price}</span>
-            <span className="text-sm">جنيه</span>
+            <span className="text-sm lg:text-base">جنيه</span>
           </div>
           <div className="flex gap-4">
             <span>الكمية</span>
             <span>{product.quantity}</span>
-            <div className="flex-1 flex justify-between">
+            <div className="flex-1 flex justify-between sm:justify-around">
               <button onClick={addToCartHandler}>
                 <IoAdd className="hover:text-primary-dark-1" />
               </button>
@@ -61,7 +61,7 @@ const CartItem = ({ product }) => {
                   <Button
                     primary
                     onClick={updateQuantityHandler}
-                    className="absolute top-[110%] left-1/2 -translate-x-1/2 text-xs px-[1px] py-[1px]"
+                    className="absolute top-[110%] left-1/2 -translate-x-1/2 text-xs sm:text-sm px-[1px] py-[1px] sm:px-1 lg:text-sm"
                   >
                     تحديث
                   </Button>
