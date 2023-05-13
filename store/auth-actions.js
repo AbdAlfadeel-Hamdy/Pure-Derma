@@ -55,10 +55,10 @@ export const loginAction =
       const { data } = response;
       dispatch(authActions.login(data.user));
       dispatch(authActions.setSuccess(`تم التسجيل بنجاح`));
-      // setTimeout(() => {
-      //   Router.push("/");
-      //   dispatch(authActions.clearFeedback());
-      // }, 3 * 1000);
+      setTimeout(() => {
+        Router.push("/");
+        dispatch(authActions.clearFeedback());
+      }, 3 * 1000);
     } catch (error) {
       console.log(error);
       dispatch(authActions.setError("البريد الإلكتروني أو كلمة المرور خاطئة"));

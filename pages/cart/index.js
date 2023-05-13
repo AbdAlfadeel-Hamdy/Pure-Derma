@@ -6,7 +6,6 @@ const CartPage = () => {
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.auth.loggedInUser);
   if (loggedInUser) dispatch(getUserCartAction());
-
   return <Cart />;
 };
 

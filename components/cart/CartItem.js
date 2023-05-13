@@ -42,9 +42,11 @@ const CartItem = ({ product }) => {
             <span className="font-thin text-xl">{product.price}</span>
             <span className="text-sm lg:text-base">جنيه</span>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-2 sm:gap-4">
             <span>الكمية</span>
-            <span>{product.quantity}</span>
+            <span className="bg-primary text-white px-2 rounded">
+              {product.quantity}
+            </span>
             <div className="flex-1 flex justify-between sm:justify-around">
               <button onClick={addToCartHandler}>
                 <IoAdd className="hover:text-primary-dark-1" />

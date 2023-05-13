@@ -2,11 +2,11 @@ import FormFeedback from "./FormFeedback";
 import BeatLoader from "react-spinners/BeatLoader";
 import { IoCheckmark } from "react-icons/io5";
 
-const Form = ({ children, onSubmit, isLoading, success, error }) => {
+const Form = ({ children, onSubmit, isLoading, success, error, className }) => {
   return (
     <form
       onSubmit={onSubmit}
-      className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-3 xl:gap-x-4 gap-y-3  bg-primary max-w-[500px] lg:max-w-[100%]  relative pt-6 pb-12 sm:pt-6 sm:pb-14 lg:py-8 px-4 sm:px-6 lg:px-8 rounded-lg mx-auto"
+      className={`grid grid-cols-1 lg:grid-cols-2 lg:gap-x-3 xl:gap-x-4 gap-y-3  bg-primary max-w-[500px] lg:max-w-[100%] relative pt-6 pb-12 sm:pt-6 sm:pb-14 lg:py-8 px-4 sm:px-6 lg:px-8 rounded-lg mx-auto ${className}`}
     >
       {children}
       {isLoading && (
