@@ -4,7 +4,7 @@ import FormInput from "./FormInput";
 import { useDispatch } from "react-redux";
 import Button from "../ui/Button";
 import { createOrderAction } from "@/store/order-actions";
-const CheckoutForm = () => {
+const CheckoutForm = ({ className }) => {
   const [enteredAddress, setEnteredAddress] = useState("");
   const [enteredPhone, setEnteredPhone] = useState("");
   const [enteredCity, setEnteredCity] = useState("");
@@ -26,7 +26,7 @@ const CheckoutForm = () => {
     dispatch(createOrderAction(enteredAddress, enteredPhone, enteredCity));
   };
   return (
-    <Form onSubmit={submitFormHandler} className="pb-6 sm:pb-6">
+    <Form onSubmit={submitFormHandler} className={`pb-6 sm:pb-6 ${className}`}>
       <FormInput
         label="العنوان"
         name="address"

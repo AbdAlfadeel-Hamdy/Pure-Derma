@@ -27,10 +27,6 @@ export const createOrderAction = (address, phone, city) => async (dispatch) => {
     const { data } = response;
     dispatch(uiActions.success("تم تنفيذ طلبك بنجاح"));
     dispatch(orderActions.makeOrder(data.order));
-    await axios.delete(`/cart`, {
-      baseURL: API_SERVER,
-      withCredentials: true,
-    });
     dispatch(cartActions.clearCart());
     dispatch(authActions.updateUserCart(0));
     setTimeout(() => {
