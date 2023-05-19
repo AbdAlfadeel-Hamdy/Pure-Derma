@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Notification from "../ui/Notification";
 import { useEffect } from "react";
 import { authActions } from "@/store/auth-slice";
+import Footer from "../footer/Footer";
 
 const MainApp = ({ children }) => {
   const notification = useSelector((state) => state.ui.notification);
@@ -21,6 +22,7 @@ const MainApp = ({ children }) => {
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-80px)]">
         <Navbar />
         <main className="flex-1">{children}</main>
+        {/* <Footer /> */}
       </div>
     </div>
   );
