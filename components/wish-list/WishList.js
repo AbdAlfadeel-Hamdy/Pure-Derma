@@ -10,7 +10,7 @@ const WishList = () => {
   if (!wishlist.length)
     return (
       <p className="text-center text-sm sm:text-lg lg:text-2xl">
-        لم اقم بإضافة أي منتج للمفضلة
+        لم تقم بإضافة أي منتج للمفضلة
       </p>
     );
 

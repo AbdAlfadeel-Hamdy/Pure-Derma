@@ -7,10 +7,13 @@ const HairCarePage = ({ products }) => {
 };
 
 export async function getStaticProps() {
-  const response = await axios.get("/products", {
-    baseURL: API_SERVER,
-    withCredentials: true,
-  });
+  const response = await axios.get(
+    "/products?category=6467b2590dcd55b1a25ddf3a",
+    {
+      baseURL: API_SERVER,
+      withCredentials: true,
+    }
+  );
   const { data } = response;
 
   return {
