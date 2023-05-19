@@ -55,7 +55,7 @@ const HeaderForm = () => {
         name="search"
         dir="rtl"
         placeholder="ابحث عن منتج"
-        className="bg-gray-light-2 flex-[0_0_100%] sm:flex-[0_0_100%] duration-200 sm:rounded-full border-none outline-none ltr:ml-8 rtl:-ml-8 py-[6px] px-4 text-right sm:text-lg caret-primary "
+        className="bg-gray-light-2 flex-[0_0_100%] sm:flex-[0_0_100%] duration-200 sm:rounded-full border-none outline-none ltr:ml-8 rtl:-ml-8 py-[6px] px-4 text-right text-base sm:text-lg caret-primary "
         value={term}
         onChange={changeTermHandler}
       />
