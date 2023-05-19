@@ -19,8 +19,11 @@ const HeaderForm = () => {
   };
   const renderedProducts = products.map((product) => {
     return (
-      <li className="py-2 px-4 border-b last-of-type:border-none hover:bg-gray-light-1 active:bg-gray-light-1 text-gray-dark-3 hover:text-gray-dark-2 active:text-gray-dark-2 duration-200">
-        <Link href={`/products/${product.id}`} className="flex">
+      <li key={product.id} className="border-b last-of-type:border-none">
+        <Link
+          href={`/products/${product.id}`}
+          className="block py-2 px-4  hover:bg-gray-light-1 active:bg-gray-light-1 text-gray-dark-3 hover:text-gray-dark-2 active:text-gray-dark-2 duration-200"
+        >
           {product.name}
         </Link>
       </li>
