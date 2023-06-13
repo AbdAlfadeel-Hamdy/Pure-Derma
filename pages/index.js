@@ -1,39 +1,25 @@
-import CTA from "@/components/cta/CTA";
-import Gallery from "@/components/gallery/Gallery";
-// import Overview from "@/components/overview/Overview";
-import TopProducts from "@/components/top-products/TopProducts";
-import { API_SERVER } from "@/lib/constants";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home({ products }) {
-  const wishlist = useSelector((state) => state.auth.wishlist);
-  const wishlistIds = wishlist.map((product) => product.id);
-  const renderedProducts = products.map((product) => {
-    if (wishlistIds.includes(product.id))
-      return { ...product, isFavorite: true };
-    else return { ...product, isFavorite: false };
-  });
   return (
-    <>
-      <Gallery />
-      {/* <Overview /> */}
-      <TopProducts products={renderedProducts} />
-      <CTA />
-    </>
+    <div className="flex flex-col">
+      <div className="relative">
+        <Image src="/images/home/1.jpg" width={1600} height={1000} />
+        <Link
+          href={"/home"}
+          className="absolute left-1/2 -translate-x-1/2 top-3/4  "
+        >
+          <button className=" md:py-1 lg:py-2 px-8 md:px-12 lg:px-16 border-2 md:text-lg lg:text-2xl border-white text-white hover:text-gray-200 hover:border-gray-200 duration-200">
+            المتجر
+          </button>
+        </Link>
+      </div>
+      <Image src="/images/home/2.jpg" width={1600} height={1000} />
+      <Image src="/images/home/3.jpg" width={1600} height={1000} />
+      <Image src="/images/home/4.jpg" width={1600} height={1000} />
+      <Image src="/images/home/5.jpg" width={1600} height={1000} />
+      <Image src="/images/home/6.jpg" width={1600} height={1000} />
+    </div>
   );
-}
-
-export async function getStaticProps() {
-  const response = await axios.get("/products", {
-    baseURL: API_SERVER,
-    withCredentials: true,
-  });
-  const { data } = response;
-
-  return {
-    props: {
-      products: data.doc,
-    },
-  };
 }

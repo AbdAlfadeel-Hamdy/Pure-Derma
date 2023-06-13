@@ -5,8 +5,11 @@ import Notification from "../ui/Notification";
 import { useEffect } from "react";
 import { authActions } from "@/store/auth-slice";
 import Footer from "../footer/Footer";
+import { useRouter } from "next/router";
 
 const MainApp = ({ children }) => {
+  const router = useRouter();
+  console.log(router);
   const notification = useSelector((state) => state.ui.notification);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -15,6 +18,7 @@ const MainApp = ({ children }) => {
     if (loggedInUser)
       dispatch(authActions.persistUser({ loggedInUser, wishlist }));
   }, []);
+  if (router.asPath === "/") return <main className="flex-1">{children}</main>;
   return (
     <div className="bg-gray-light-1 lg:mx-auto ">
       {notification && <Notification notification={notification} />}
