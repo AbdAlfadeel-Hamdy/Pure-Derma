@@ -1,11 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import imageOne from "@/public/images/home/1.png";
+import imageTwo from "@/public/images/home/2.png";
+import imageThree from "@/public/images/home/3.png";
+import imageFour from "@/public/images/home/4.png";
+import imageFive from "@/public/images/home/5.png";
+import imageSix from "@/public/images/home/6.png";
 
 export default function Home({ products }) {
   return (
     <div className="flex flex-col">
       <div className="relative">
-        <Image src="/images/home/1.jpg" width={1600} height={1000} />
+        <Image src={imageOne} />
         <Link
           href={"/home"}
           className="absolute left-1/2 -translate-x-1/2 top-3/4  "
@@ -15,11 +21,11 @@ export default function Home({ products }) {
           </button>
         </Link>
       </div>
-      <Image src="/images/home/2.jpg" width={1600} height={1000} />
-      <Image src="/images/home/3.jpg" width={1600} height={1000} />
-      <Image src="/images/home/4.jpg" width={1600} height={1000} />
-      <Image src="/images/home/5.jpg" width={1600} height={1000} />
-      <Image src="/images/home/6.jpg" width={1600} height={1000} />
+      <Image src={imageTwo} />
+      <Image src={imageThree} />
+      <Image src={imageFour} />
+      <Image src={imageFive} />
+      <Image src={imageSix} />
     </div>
   );
 }

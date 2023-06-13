@@ -18,7 +18,8 @@ const MainApp = ({ children }) => {
     if (loggedInUser)
       dispatch(authActions.persistUser({ loggedInUser, wishlist }));
   }, []);
-  if (router.asPath === "/") return <main className="flex-1">{children}</main>;
+  if (router.asPath === "/")
+    return <main className="flex-1 bg-[#f5f5ef]">{children}</main>;
   return (
     <div className="bg-gray-light-1 lg:mx-auto ">
       {notification && <Notification notification={notification} />}
