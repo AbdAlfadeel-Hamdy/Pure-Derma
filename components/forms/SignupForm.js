@@ -76,7 +76,7 @@ const SignupForm = () => {
         name="password"
         type="password"
         placeholder="يجب أن يكون 7 حروف أو أكثر"
-        value={enteredEmail}
+        value={enteredPassword}
         onChange={passwordInputHandler}
         onFocus={clearFeedbacks}
       />

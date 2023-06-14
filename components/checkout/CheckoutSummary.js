@@ -4,10 +4,9 @@ const CheckoutSummary = () => {
   const products = useSelector((state) => state.cart.cartItems);
   const totalCartPrice = useSelector((state) => state.cart.totalCartPrice);
   const renderedProducts = products.map((product) => (
-    <li className="grid grid-cols-[30%_1fr] border-b border-primary-dark-3 py-1">
-      <div className="row-span-2">image</div>
-      <h3 className="py-1 px-3">I phone</h3>
-      <p className="px-4">
+    <li className="grid grid-cols-2 sm:grid-cols-1 border-b border-primary-dark-3 py-1">
+      <h3 className="py-1 px-3">{product.title}</h3>
+      <p className="px-4 justify-self-end sm:justify-self-auto">
         <span className="text-lg">{product.quantity}</span>x
       </p>
     </li>
