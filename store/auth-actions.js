@@ -26,11 +26,11 @@ export const signupAction =
       dispatch(authActions.login(data.user));
       dispatch(authActions.setSuccess(`تم التسجيل بنجاح`));
       setTimeout(() => {
-        Router.push("/");
+        Router.push("/home");
         dispatch(authActions.clearFeedback());
       }, 3 * 1000);
       const path = Router.pathname;
-      if (path !== "/") Router.push("/");
+      if (path !== "/home") Router.push("/home");
     } catch (error) {
       dispatch(authActions.setError("البريد الإلكتروني أو كلمة المرور خاطئة"));
     }
@@ -56,7 +56,7 @@ export const loginAction =
       dispatch(authActions.login(data.user));
       dispatch(authActions.setSuccess(`تم التسجيل بنجاح`));
       setTimeout(() => {
-        Router.push("/");
+        Router.push("/home");
         dispatch(authActions.clearFeedback());
       }, 3 * 1000);
     } catch (error) {

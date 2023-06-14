@@ -30,7 +30,7 @@ export const createOrderAction = (address, phone, city) => async (dispatch) => {
     dispatch(cartActions.clearCart());
     dispatch(authActions.updateUserCart(0));
     setTimeout(() => {
-      Router.push("/");
+      Router.push("/home");
     }, 3 * 1000);
   } catch (error) {
     dispatch(uiActions.error("حدث خطأ أثناء العملية، حاول مرة أخرى"));
