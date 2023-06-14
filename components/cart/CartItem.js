@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { removeFromCartAction, updateCartAction } from "@/store/cart-actions";
 import { useState } from "react";
 import Button from "../ui/Button";
+import imageOne from "@/public/images/products/1.png";
 
 const CartItem = ({ product }) => {
   const [quantity, setQuentity] = useState("");
@@ -28,13 +29,12 @@ const CartItem = ({ product }) => {
   };
   return (
     <li className="flex sm:flex-row bg-white rounded-lg shadow-md hover:-translate-y-2 hover:shadow-lg duration-200 overflow-hidden text-lg max-w-md lg:max-w-lg xl:max-w-none relative">
-      {/* <Image
-        src={product.src}
-        width={400}
+      <Image
+        src={imageOne}
+        width={150}
         height={200}
-        className="h-[200px] sm:w-[200px]"
-      /> */}
-      <div className="basis-[40%] flex-shrink-0 bg-red-300">Image</div>
+        className="sm:w-[200px] lg:w-[150px] xl:w-[200px]"
+      />
       <div className="flex-1">
         <div className="border-b border-gray-light-2 p-2 sm:p-4 pb-6 sm:pb-8 ">
           <h2 className="text-center sm:text-xl mb-2 sm:mb-3">product title</h2>

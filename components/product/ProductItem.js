@@ -1,3 +1,5 @@
+import imageOne from "@/public/images/products/1.png";
+
 import Image from "next/image";
 import Button from "../ui/Button";
 import {
@@ -25,16 +27,16 @@ const ProductItem = ({ product }) => {
     else dispatch(toggleFavoriteAction(product));
   };
   return (
-    <li className="rounded-xl overflow-hidden shadow-md relative hover:-translate-y-1 hover:shadow-lg lg:hover:shadow-xl duration-200 ">
-      {/* <Image
-        src={product.imageCover}
+    <li className="rounded-xl overflow-hidden shadow-md relative hover:-translate-y-1 hover:shadow-lg lg:hover:shadow-xl duration-200 w-[300px] mx-auto ">
+      <Image
+        src={imageOne}
         alt={product.title}
-        width={800}
+        width={300}
         height={200}
         className="h-[200px] min-w-full w-[400px]  object-cover"
-      /> */}
+      />
       <div className="px-2 py-4 flex flex-col gap-4">
-        <h3 className="text-primary sm:text-xl lg:text-2xl uppercase sm:min-h-[56px] lg:min-h-[64px]">
+        <h3 className="text-primary sm:text-xl lg:text-2xl uppercase   text-center">
           {product.name}
         </h3>
         <div className="text-2xl sm:text-3xl text-primary font-light flex justify-center gap-3">

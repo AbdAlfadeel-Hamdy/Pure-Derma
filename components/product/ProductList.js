@@ -6,7 +6,7 @@ const ProductList = ({ products }) => {
   ));
 
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-6 sm:px-0 max-w-[280px] sm:max-w-none mx-auto">
+    <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-x-4 md:gap-y-12 md:px-0 mx-auto">
       {renderedProducts}
     </ul>
   );

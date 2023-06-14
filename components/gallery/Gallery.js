@@ -1,6 +1,6 @@
-import galleryImageOne from "@/public/images/gallery/1.jpg";
-import galleryImageTwo from "@/public/images/gallery/2.jpg";
-import galleryImageThree from "@/public/images/gallery/3.jpg";
+import galleryImageOne from "@/public/images/gallery/1.png";
+import galleryImageTwo from "@/public/images/gallery/2.png";
+import galleryImageThree from "@/public/images/gallery/3.png";
 import GalleryItem from "./GalleryItem";
 
 const galleryList = [
