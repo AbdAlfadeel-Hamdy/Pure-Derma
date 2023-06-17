@@ -16,6 +16,7 @@ const HeaderForm = () => {
   const searchProductsHandler = (e) => {
     e.preventDefault();
     router.push(`/search?term=${term}`);
+    setTerm("");
   };
   const renderedProducts = products.map((product) => {
     return (
@@ -51,6 +52,7 @@ const HeaderForm = () => {
       clearTimeout(timer);
     };
   }, [term]);
+
   return (
     <form className="flex items-center justify-center flex-[0_0_100%] sm:flex-[0_0_40%] order-1 sm:-order-none mt-2 sm:mt-0 relative">
       <input
@@ -73,6 +75,7 @@ const HeaderForm = () => {
         <ul
           className="w-full sm:w-[calc(100%-1rem)] absolute text-gray-dark-2 bg-white top-full z-20 sm:rounded-lg"
           dir="ltr"
+          onClick={() => setTerm("")}
         >
           {renderedProducts}
         </ul>

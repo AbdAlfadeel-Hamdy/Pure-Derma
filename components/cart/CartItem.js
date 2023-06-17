@@ -4,33 +4,33 @@ import { useDispatch } from "react-redux";
 import { removeFromCartAction, updateCartAction } from "@/store/cart-actions";
 import { useState } from "react";
 import Button from "../ui/Button";
-import imageOne from "@/public/images/products/1.png";
 
-const CartItem = ({ product }) => {
+const CartItem = ({ product, quantity: productQuantity }) => {
   const [quantity, setQuentity] = useState("");
   const quantityInputHandler = (e) => {
     setQuentity(e.target.value);
   };
   const dispatch = useDispatch();
   const addToCartHandler = () => {
-    dispatch(updateCartAction(product.product, product.quantity + 1));
+    dispatch(updateCartAction(product.id, productQuantity + 1));
   };
   const removeFromCartHandler = () => {
-    if (product.quantity === 1) dispatch(removeFromCartAction(product.product));
-    else dispatch(updateCartAction(product.product, product.quantity - 1));
+    if (productQuantity === 1) dispatch(removeFromCartAction(product.id));
+    else dispatch(updateCartAction(product.id, productQuantity - 1));
   };
   const updateQuantityHandler = () => {
-    if (quantity <= 0) dispatch(removeFromCartAction(product.product));
-    dispatch(updateCartAction(product.product, quantity));
+    if (quantity <= 0) dispatch(removeFromCartAction(product));
+    dispatch(updateCartAction(product.id, quantity));
     setQuentity("");
   };
   const deleteCartItemHandler = () => {
-    dispatch(removeFromCartAction(product.product));
+    dispatch(removeFromCartAction(product.id));
   };
   return (
     <li className="flex sm:flex-row bg-white rounded-lg shadow-md hover:-translate-y-2 hover:shadow-lg duration-200 overflow-hidden text-lg max-w-md lg:max-w-lg xl:max-w-none relative">
       <Image
-        src={imageOne}
+        src={product.detailsImage}
+        alt={product.description}
         width={150}
         height={200}
         className="sm:w-[200px] lg:w-[150px] xl:w-[200px]"
@@ -45,7 +45,7 @@ const CartItem = ({ product }) => {
           <div className="flex gap-2 sm:gap-4">
             <span>الكمية</span>
             <span className="bg-primary text-white px-2 rounded">
-              {product.quantity}
+              {productQuantity}
             </span>
             <div className="flex-1 flex justify-between sm:justify-around">
               <button onClick={addToCartHandler}>
@@ -54,7 +54,7 @@ const CartItem = ({ product }) => {
               <div className="relative">
                 <input
                   type="text"
-                  placeholder={product.quantity}
+                  placeholder={productQuantity}
                   value={quantity}
                   onChange={quantityInputHandler}
                   className="w-10 text-center border border-gray-light-2 rounded-md outline-none focus:border-gray-light-4"
@@ -69,7 +69,6 @@ const CartItem = ({ product }) => {
                   </Button>
                 )}
               </div>
-
               <button onClick={removeFromCartHandler}>
                 <IoRemove className="hover:text-primary-dark-1" />
               </button>
@@ -80,7 +79,7 @@ const CartItem = ({ product }) => {
           <span>الإجمالي</span>
           <div className="flex gap-1 items-center">
             <span className="font-thin text-xl">
-              {(product.price * product.quantity).toFixed(2)}
+              {(product.price * productQuantity).toFixed(2)}
             </span>
             <span className="text-sm">جنيه</span>
           </div>

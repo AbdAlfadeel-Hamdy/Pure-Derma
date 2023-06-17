@@ -2,10 +2,14 @@ import { useSelector } from "react-redux";
 
 const CheckoutSummary = () => {
   const products = useSelector((state) => state.cart.cartItems);
+  console.log(products);
   const totalCartPrice = useSelector((state) => state.cart.totalCartPrice);
   const renderedProducts = products.map((product) => (
-    <li className="grid grid-cols-2 sm:grid-cols-1 border-b border-primary-dark-3 py-1">
-      <h3 className="py-1 px-3">{product.title}</h3>
+    <li
+      key={product._id}
+      className="grid grid-cols-2 sm:grid-cols-1 border-b border-primary-dark-3 py-1"
+    >
+      <h3 className="py-1 px-3">{product.product.name}</h3>
       <p className="px-4 justify-self-end sm:justify-self-auto">
         <span className="text-lg">{product.quantity}</span>x
       </p>

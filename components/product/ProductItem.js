@@ -1,14 +1,6 @@
-import imageOne from "@/public/images/products/1.png";
-
 import Image from "next/image";
 import Button from "../ui/Button";
-import {
-  IoCart,
-  IoCheckmark,
-  IoHeart,
-  IoHeartOutline,
-  IoMenu,
-} from "react-icons/io5";
+import { IoCart, IoHeart, IoHeartOutline, IoMenu } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCartAction } from "@/store/cart-actions";
 import { useRouter } from "next/router";
@@ -29,8 +21,8 @@ const ProductItem = ({ product }) => {
   return (
     <li className="rounded-xl overflow-hidden shadow-md relative hover:-translate-y-1 hover:shadow-lg lg:hover:shadow-xl duration-200 w-[300px] mx-auto ">
       <Image
-        src={imageOne}
-        alt={product.title}
+        src={product.detailsImage}
+        alt={product.description}
         width={300}
         height={200}
         className="h-[200px] min-w-full w-[400px]  object-cover"
@@ -62,13 +54,6 @@ const ProductItem = ({ product }) => {
               <IoCart />
             </Button>
           </div>
-          <Button
-            name="buy now"
-            tertiary
-            className="flex items-center justify-center gap-2"
-          >
-            <span>شراء الأن</span> <IoCheckmark />
-          </Button>
         </div>
       </div>
       {!product.isFavorite && (

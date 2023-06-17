@@ -4,12 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Notification from "../ui/Notification";
 import { useEffect } from "react";
 import { authActions } from "@/store/auth-slice";
-import Footer from "../footer/Footer";
 import { useRouter } from "next/router";
 
 const MainApp = ({ children }) => {
   const router = useRouter();
-  console.log(router);
   const notification = useSelector((state) => state.ui.notification);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,7 +25,6 @@ const MainApp = ({ children }) => {
       <div className="flex flex-col lg:flex-row min-h-[calc(100vh-80px)]">
         <Navbar />
         <main className="flex-1">{children}</main>
-        {/* <Footer /> */}
       </div>
     </div>
   );

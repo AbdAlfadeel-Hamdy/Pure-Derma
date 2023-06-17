@@ -23,7 +23,6 @@ export const updateCartAction = (productId, quantity) => async (dispatch) => {
     dispatch(authActions.updateUserCart(data.amount));
   } catch (error) {
     dispatch(uiActions.error("حدث خطأ أثناء تحديث منتجات العربة"));
-    console.log(error);
   }
   setTimeout(() => {
     dispatch(uiActions.clear());
@@ -68,7 +67,6 @@ export const removeFromCartAction = (productId) => async (dispatch) => {
     dispatch(authActions.updateUserCart(data.amount));
   } catch (error) {
     dispatch(uiActions.error("حدث خطأ أثناء حذف المنتج من العربة"));
-    console.log(error);
   }
   setTimeout(() => {
     dispatch(uiActions.clear());
@@ -87,7 +85,6 @@ export const clearCartAction = () => async (dispatch) => {
     dispatch(authActions.updateUserCart(0));
   } catch (error) {
     dispatch(uiActions.error("حدث خطأ أثناء حذف محتويات العربة"));
-    console.log(error);
   }
   setTimeout(() => {
     dispatch(uiActions.clear());
@@ -102,10 +99,5 @@ export const getUserCartAction = () => async (dispatch) => {
     });
     const { data } = response;
     dispatch(cartActions.getUserCart(data));
-  } catch (error) {
-    console.log(error);
-  }
-  setTimeout(() => {
-    dispatch(uiActions.clear());
-  }, 3 * 1000);
+  } catch (error) {}
 };
