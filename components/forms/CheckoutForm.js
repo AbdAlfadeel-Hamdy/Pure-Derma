@@ -7,7 +7,7 @@ import { createOrderAction } from "@/store/order-actions";
 const CheckoutForm = ({ className }) => {
   const loggedInUser = useSelector((state) => state.auth.loggedInUser);
   const [enteredAddress, setEnteredAddress] = useState("");
-  const [enteredPhone, setEnteredPhone] = useState(loggedInUser.phone);
+  const [enteredPhone, setEnteredPhone] = useState(loggedInUser?.phone || "");
   const [enteredCity, setEnteredCity] = useState("");
   const dispatch = useDispatch();
   const addressInputHandler = (e) => {
