@@ -5,7 +5,13 @@ import { uiActions } from "./ui-slice";
 import { API_SERVER } from "@/lib/constants";
 
 export const signupAction =
-  (enteredName, enteredEmail, enteredPassword, enteredConfirmPassword) =>
+  (
+    enteredName,
+    enteredPhone,
+    enteredEmail,
+    enteredPassword,
+    enteredConfirmPassword
+  ) =>
   async (dispatch) => {
     dispatch(authActions.setLoading(true));
     try {
@@ -13,6 +19,7 @@ export const signupAction =
         "/users/signup",
         {
           name: enteredName,
+          phone: enteredPhone,
           email: enteredEmail,
           password: enteredPassword,
           passwordConfirm: enteredConfirmPassword,
@@ -33,6 +40,7 @@ export const signupAction =
       if (path !== "/home") Router.push("/home");
     } catch (error) {
       dispatch(authActions.setError("البريد الإلكتروني أو كلمة المرور خاطئة"));
+      console.log(error);
     }
     dispatch(authActions.setLoading(false));
   };

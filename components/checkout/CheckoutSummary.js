@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 const CheckoutSummary = () => {
   const products = useSelector((state) => state.cart.cartItems);
-  console.log(products);
   const totalCartPrice = useSelector((state) => state.cart.totalCartPrice);
   const renderedProducts = products.map((product) => (
     <li

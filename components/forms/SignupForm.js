@@ -8,6 +8,7 @@ import { authActions } from "@/store/auth-slice";
 
 const SignupForm = () => {
   const [enteredName, setEnteredName] = useState("");
+  const [enteredPhone, setEnteredPhone] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredConfirmPassword, setConfirmPassword] = useState("");
@@ -17,6 +18,9 @@ const SignupForm = () => {
   const dispatch = useDispatch();
   const nameInputHandler = (e) => {
     setEnteredName(e.target.value);
+  };
+  const phoneInputHandler = (e) => {
+    setEnteredPhone(e.target.value);
   };
   const emailInputHandler = (e) => {
     setEnteredEmail(e.target.value);
@@ -40,6 +44,7 @@ const SignupForm = () => {
     dispatch(
       signupAction(
         enteredName,
+        enteredPhone,
         enteredEmail,
         enteredPassword,
         enteredConfirmPassword
@@ -60,6 +65,15 @@ const SignupForm = () => {
         placeholder="أدخل اسمك"
         value={enteredName}
         onChange={nameInputHandler}
+        onFocus={clearFeedbacks}
+      />
+      <FormInput
+        label="رقم الموبيل"
+        name="phone"
+        type="number"
+        placeholder="أدخل رقم موبايلك"
+        value={enteredPhone}
+        onChange={phoneInputHandler}
         onFocus={clearFeedbacks}
       />
       <FormInput

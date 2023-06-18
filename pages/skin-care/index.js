@@ -15,20 +15,29 @@ const SkinCarePage = ({ products }) => {
 };
 
 export async function getStaticProps() {
-  const response = await axios.get(
-    "/products?category=6454fe220bbe3cf2b788cb04",
-    {
-      baseURL: API_SERVER,
-      withCredentials: true,
-    }
-  );
-  const { data } = response;
+  try {
+    const response = await axios.get(
+      "/products?category=6454fe220bbe3cf2b788cb04",
+      {
+        baseURL: API_SERVER,
+        withCredentials: true,
+      }
+    );
+    const { data } = response;
 
-  return {
-    props: {
-      products: data.doc,
-    },
-  };
+    return {
+      props: {
+        products: data.doc,
+      },
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      props: {
+        products: [],
+      },
+    };
+  }
 }
 
 export default SkinCarePage;

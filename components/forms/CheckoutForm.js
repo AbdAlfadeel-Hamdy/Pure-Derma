@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Form from "./Form";
 import FormInput from "./FormInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../ui/Button";
 import { createOrderAction } from "@/store/order-actions";
 const CheckoutForm = ({ className }) => {
+  const loggedInUser = useSelector((state) => state.auth.loggedInUser);
   const [enteredAddress, setEnteredAddress] = useState("");
-  const [enteredPhone, setEnteredPhone] = useState("");
+  const [enteredPhone, setEnteredPhone] = useState(loggedInUser.phone);
   const [enteredCity, setEnteredCity] = useState("");
   const dispatch = useDispatch();
   const addressInputHandler = (e) => {
