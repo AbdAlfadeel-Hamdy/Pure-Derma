@@ -34,6 +34,7 @@ export async function getStaticProps() {
       props: {
         products: data.doc,
       },
+      revalidate: 10,
     };
   } catch (err) {
     return {
