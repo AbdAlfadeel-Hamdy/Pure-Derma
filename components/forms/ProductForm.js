@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Form from "./Form";
 import FormInput from "./FormInput";
 import Button from "../ui/Button";
@@ -6,22 +6,24 @@ import axios from "axios";
 import { API_SERVER } from "@/lib/constants";
 import { uiActions } from "@/store/ui-slice";
 import { useDispatch } from "react-redux";
-const ProductForm = () => {
+const ProductForm = ({ product }) => {
   const dispatch = useDispatch();
-  const nameInput = useRef();
-  const priceInput = useRef();
-  const [image, setImage] = useState();
-  const [coverImage, setCoverImage] = useState();
-  const descriptionInput = useRef();
-  const [category, setCategory] = useState("6454fe220bbe3cf2b788cb04");
-  const featureInput1 = useRef();
-  const featureInput2 = useRef();
-  const featureInput3 = useRef();
-  const featureInput4 = useRef();
-  const featureInput5 = useRef();
-  const featureInput6 = useRef();
-  const featureInput7 = useRef();
-  const featureInput8 = useRef();
+  const [name, setName] = useState(product?.name || "");
+  const [price, setPrice] = useState(product?.price || "");
+  const [image, setImage] = useState(product?.detailsImage || "");
+  const [coverImage, setCoverImage] = useState(product?.imageCover || "");
+  const [description, setDescription] = useState(product?.description || "");
+  const [category, setCategory] = useState(
+    product?.category._id || "6454fe220bbe3cf2b788cb04"
+  );
+  const [feature1, setFeature1] = useState(product?.features[0]);
+  const [feature2, setFeature2] = useState(product?.features[1]);
+  const [feature3, setFeature3] = useState(product?.features[2]);
+  const [feature4, setFeature4] = useState(product?.features[3]);
+  const [feature5, setFeature5] = useState(product?.features[4]);
+  const [feature6, setFeature6] = useState(product?.features[5]);
+  const [feature7, setFeature7] = useState(product?.features[6]);
+  const [feature8, setFeature8] = useState(product?.features[7]);
 
   const selectImageFile = (e) => {
     setImage(e.target.files[0]);
@@ -31,35 +33,35 @@ const ProductForm = () => {
   };
 
   const clearInputs = () => {
-    nameInput.current.value = "";
-    priceInput.current.value = "";
+    setName("");
+    setPrice("");
     setImage("");
     setCoverImage("");
-    descriptionInput.current.value = "";
+    setDescription("");
     setCategory("");
-    featureInput1.current.value = "";
-    featureInput2.current.value = "";
-    featureInput3.current.value = "";
-    featureInput4.current.value = "";
-    featureInput5.current.value = "";
-    featureInput6.current.value = "";
-    featureInput7.current.value = "";
-    featureInput8.current.value = "";
+    setFeature1("");
+    setFeature2("");
+    setFeature3("");
+    setFeature4("");
+    setFeature5("");
+    setFeature6("");
+    setFeature7("");
+    setFeature8("");
   };
 
   const submitHandler = async (e) => {
     const features = [
-      featureInput1.current.value,
-      featureInput2.current.value,
-      featureInput3.current.value,
-      featureInput4.current.value,
-      featureInput5.current.value,
-      featureInput6.current.value,
-      featureInput7.current.value,
-      featureInput8.current.value,
+      feature1,
+      feature2,
+      feature3,
+      feature4,
+      feature5,
+      feature6,
+      feature7,
+      feature8,
     ];
 
-    const modifiedFeatures = features.filter((feat) => feat !== "");
+    const modifiedFeatures = features?.filter((feat) => !!feat);
     e.preventDefault();
 
     const imageFormData = new FormData();
@@ -69,24 +71,35 @@ const ProductForm = () => {
     coverImageFormData.append("imageCover", coverImage);
 
     const productData = {
-      name: nameInput.current.value,
-      price: priceInput.current.value,
+      name,
+      price,
       category,
-      description: descriptionInput.current.value,
+      description,
       features: modifiedFeatures,
-      detailsImage: imageFormData.get("image"),
-      imageCover: coverImageFormData.get("imageCover"),
     };
+    if (!product) {
+      productData.detailsImage = imageFormData.get("image");
+      productData.imageCover = coverImageFormData.get("imageCover");
+    }
 
     try {
       dispatch(uiActions.send("جاري إضافة المنتج"));
-      await axios.post("/products", productData, {
-        baseURL: API_SERVER,
-        withCredentials: true,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      if (!product)
+        await axios.post("/products", productData, {
+          baseURL: API_SERVER,
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      else
+        await axios.patch(`/products/${product.id}`, productData, {
+          baseURL: API_SERVER,
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
       dispatch(uiActions.success("تم إضافة المنتج"));
       clearInputs();
       console.log(productData);
@@ -105,31 +118,38 @@ const ProductForm = () => {
         label="اسم المنتج"
         name="name"
         type="text"
-        inputRef={nameInput}
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
       <FormInput
         label="سعر المنتج"
         name="price"
         type="number"
-        inputRef={priceInput}
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
       />
-      <FormInput
-        label="صورة المنتج"
-        name="image"
-        type="file"
-        onChange={selectImageFile}
-      />
-      <FormInput
-        label="صورة الغلاف"
-        name="cover"
-        type="file"
-        onChange={selectCoverImageFile}
-      />
+      {!product && (
+        <FormInput
+          label="صورة المنتج"
+          name="image"
+          type="file"
+          onChange={selectImageFile}
+        />
+      )}
+      {!product && (
+        <FormInput
+          label="صورة الغلاف"
+          name="cover"
+          type="file"
+          onChange={selectCoverImageFile}
+        />
+      )}
       <FormInput
         label="وصف المنتج"
         name="description"
         type="text"
-        inputRef={descriptionInput}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
       />
       <div>
         <label
@@ -152,52 +172,60 @@ const ProductForm = () => {
         label="ميزة 1"
         name="feature1"
         type="text"
-        inputRef={featureInput1}
+        value={feature1}
+        onChange={(e) => setFeature1(e.target.value)}
       />
       <FormInput
         label="ميزة 2"
         name="feature2"
         type="text"
-        inputRef={featureInput2}
+        value={feature2}
+        onChange={(e) => setFeature2(e.target.value)}
       />
       <FormInput
         label="ميزة 3"
         name="feature3"
         type="text"
-        inputRef={featureInput3}
+        value={feature3}
+        onChange={(e) => setFeature3(e.target.value)}
       />
       <FormInput
         label="ميزة 4"
         name="feature4"
         type="text"
-        inputRef={featureInput4}
+        value={feature4}
+        onChange={(e) => setFeature4(e.target.value)}
       />
       <FormInput
         label="ميزة 5"
         name="feature5"
         type="text"
-        inputRef={featureInput5}
+        value={feature5}
+        onChange={(e) => setFeature5(e.target.value)}
         required={false}
       />
       <FormInput
         label="ميزة 6"
         name="feature6"
         type="text"
-        inputRef={featureInput6}
+        value={feature6}
+        onChange={(e) => setFeature6(e.target.value)}
         required={false}
       />
       <FormInput
         label="ميزة 7"
         name="feature7"
         type="text"
-        inputRef={featureInput7}
+        value={feature7}
+        onChange={(e) => setFeature7(e.target.value)}
         required={false}
       />
       <FormInput
         label="ميزة 8"
         name="feature8"
         type="text"
-        inputRef={featureInput8}
+        value={feature8}
+        onChange={(e) => setFeature8(e.target.value)}
         required={false}
       />
       <Button submit className="mt-4">

@@ -1,10 +1,19 @@
 import Image from "next/image";
 import Button from "../ui/Button";
-import { IoCart, IoHeart, IoHeartOutline, IoMenu } from "react-icons/io5";
+import {
+  IoCart,
+  IoClose,
+  IoHeart,
+  IoHeartOutline,
+  IoMenu,
+} from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCartAction } from "@/store/cart-actions";
 import { useRouter } from "next/router";
 import { toggleFavoriteAction } from "@/store/auth-actions";
+import axios from "axios";
+import { API_SERVER } from "@/lib/constants";
+import { uiActions } from "@/store/ui-slice";
 
 const ProductItem = ({ product }) => {
   const loggedInUser = useSelector((state) => state.auth.loggedInUser);
@@ -18,8 +27,30 @@ const ProductItem = ({ product }) => {
     if (!loggedInUser) router.push("/auth");
     else dispatch(toggleFavoriteAction(product));
   };
+
+  const deleteProductHandler = async () => {
+    try {
+      dispatch(uiActions.send("جاري حذف المنتج"));
+      await axios.delete(`/products/${product.id}`, {
+        baseURL: API_SERVER,
+        withCredentials: true,
+      });
+      dispatch(uiActions.success("تم حذف المنتج"));
+    } catch (err) {
+      dispatch(uiActions.error("حدث خطأ أثناء حذف المنتج"));
+    }
+    setTimeout(() => {
+      dispatch(uiActions.clear());
+    }, 3000);
+  };
   return (
     <li className="rounded-xl overflow-hidden shadow-md relative hover:-translate-y-1 hover:shadow-lg lg:hover:shadow-xl duration-200 w-[300px] mx-auto ">
+      {loggedInUser && loggedInUser.role === "admin" && (
+        <IoClose
+          className="absolute top-2 right-2 bg-primary p-1 text-2xl xl:text-3xl text-white cursor-pointer hover:bg-primary-dark duration-200 "
+          onClick={deleteProductHandler}
+        />
+      )}
       <Image
         src={product.detailsImage}
         alt={product.description}

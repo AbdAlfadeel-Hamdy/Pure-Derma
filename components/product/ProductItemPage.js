@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { IoCheckmark } from "react-icons/io5";
+import { IoCheckmark, IoPencil, IoPin } from "react-icons/io5";
 import Button from "@/components/ui/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
@@ -30,6 +30,10 @@ const ProductItemPage = ({ product }) => {
     </li>
   ));
 
+  const editProductHandler = () => {
+    router.push(`/dashboard/editProduct/${product.id}`);
+  };
+
   return (
     <section className="flex flex-col gap-4 sm:gap-8 lg:gap-12 max-w-[800px] mx-auto bg-secondary min-h-[calc(100vh-140px)]">
       <Image
@@ -38,7 +42,13 @@ const ProductItemPage = ({ product }) => {
         width={800}
         height={320}
       />
-      <div className="flex flex-col gap-1 sm:gap-2 lg:gap-3 justify-center items-center ">
+      <div className="flex flex-col gap-1 sm:gap-2 lg:gap-3 justify-center items-center relative ">
+        {loggedInUser && loggedInUser.role === "admin" && (
+          <IoPencil
+            className="absolute top-2 right-4 sm:right-8 cursor-pointer hover:text-primary-dark-1 duration-200"
+            onClick={editProductHandler}
+          />
+        )}
         <h1
           className="text-center text-primary-dark-1 text-xl sm:text-2xl lg:text-3xl
       "
